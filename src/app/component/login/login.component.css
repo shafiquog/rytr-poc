@@ -1,0 +1,133 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.content-helo {
+  height: 1018px;
+  background: #f9f9f9;
+  border-right: 1px solid #eae4df;
+}
+.hello-div {
+  padding: 30px;
+  border-bottom: 1px solid #eae4df;
+}
+
+.btn-continue {
+  background-color: #fff;
+  border: 1px solid #eae4df;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+  color: #735d58;
+  width: 177px;
+  height: 32px;
+  background: #ffffff;
+  border-radius: 16px;
+  width: 14rem;
+}
+ 
+  .btn-continue:hover {
+    background: #fff8e1;
+  }
+
+
+
+.text-set {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 40%;
+  font-family: "Nunito",sans-serif;
+  font-style: italic;
+  font-size: 1.125rem;
+}
+.auther-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 40%;
+}
+.font-p {
+  font-size: 16px;
+  font-style: italic;
+  padding-top: 1rem;
+  color: #735d58;
+}
+.description {
+  padding: 20px;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.75rem;
+}
+
+
+/*
+font-primary: "Nunito", sans-serif!important;
+--font-secondary: "Nunito", sans-serif;*/
+/*--font-size: 0.75rem;*/
+
+.p-font {
+  font-family: "Nunito", sans-serif;
+  font-size: 0.8rem;
+}
+.profile-pic {
+  height: 8rem;
+  min-width: 8rem;
+}
+.descp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 40%;
+}
+.input-styl{
+ padding:20px;
+ padding-left:0;
+}
+  .input-styl input {
+    background: #f9f9f9;
+    border: 1px solid #d2c9bd;
+    border-radius: 1.25rem;
+    box-shadow: none;
+    color: #301400;
+    display: flex;
+    font-family: "Nunito",sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    min-height: 2.5rem;
+    min-width: 16rem;
+    outline: none;
+    padding: 0.3rem 0.75rem;
+    transition: border-color .2s;
+  
+  }
+    .input-styl input:hover {
+      border: 1px solid #ff8f00;
+    }
+    .btn-next {
+      width: 96px;
+      border-radius: 1.4rem;
+      font-size: var(--font-size-small);
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      background-color: #ff8f00;
+      border: 1px solid #ff8f00;
+      box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+      color: #ffffff;
+    }
+
+.btn-cancel {
+  background: none;
+  border: none;
+  color: #735d58;
+  padding: 0.25rem 0.5rem;
+  font-weight:500;
+}
+  .btn-cancel:hover {
+    background-color: #eee;
+    border-radius: 20px
+  }
+.main-content {
+  border-top: 1px solid #eae4df;
+  border-bottom: 1px solid #eae4df;
+}

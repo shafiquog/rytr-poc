@@ -1,0 +1,21 @@
+.nav-color {
+  background-color: #301400;
+}
+  .nav-color a{
+      color:#ffffff;
+  }
+  .nav-sec {
+    display: flex;
+    justify-content: end;
+    margin-right:15px;
+  }
+.account-styl {
+  border-bottom: 3px solid #ffb300;
+  color: #ffb300;
+  opacity: 1;
+  position:relative;
+  top:8px;
+}
+  .account-styl a {
+    color: #ffb300;
+  }

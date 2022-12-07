@@ -1,0 +1,74 @@
+.drop-section {
+  height: 1018px;
+  background: #f9f9f9;
+ padding:25px;
+ overscroll-behavior-y:auto;
+ 
+}
+.select-styl{
+    width:100%;
+  align-items: center;
+  background-color: var(--background-light);
+  border: 1px solid #d2c9bd;
+  border-radius: 1.4rem;
+  color: #301400;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  font-family: "Nunito",sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 2.5rem;
+  outline: none;
+  padding: 0 0.5rem;
+  transition-duration: .2s;
+  transition-property: border;
+
+}
+  .select-styl:hover {
+    border: 1px solid #ff8f00;
+  }
+
+
+.btn-types button {
+  background: none;
+  border: none;
+  color: #735d58;
+  padding: 0.25rem 0.5rem;
+  font-weight: 500;
+  font-size:0.9rem;
+}
+  .btn-types button:hover {
+    border-radius: 20px;
+    background: #eee;
+  }
+.home-nav {
+  border-bottom: 1px solid #eae4df;
+  padding: 20px;
+}
+.name-tags p {
+  align-items: center;
+  color: #735d58;
+  display: flex;
+  flex-direction: row;
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 2rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+ 
+}
+.name-tags {
+  border-bottom: 1px solid #eae4df;
+}
+.hover-bg:hover {
+  background-color: #fff8e1;
+}
+.btn-doc button{
+  background: none;
+  border: none;
+  color: #735d58;
+  padding: 0.25rem 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
