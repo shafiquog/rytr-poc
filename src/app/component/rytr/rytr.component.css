@@ -54,7 +54,7 @@
   font-size: 0.75rem;
   font-weight: 700;
   min-width: 2rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   text-transform: uppercase;
  
 }
@@ -71,4 +71,40 @@
   padding: 0.25rem 0.5rem;
   font-weight: 500;
   font-size: 0.9rem;
+}
+/*select {
+    -webkit-appearance: none;
+    appearance: none;
+  
+}*/
+
+.select-wrapper {
+  position: relative;
+}
+
+  .select-wrapper::after {
+    font-size: 1rem;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    font-family: 'FontAwesome';
+    content: "\f107" !important;
+    font-weight: 900;
+    margin-right: 4px;
+    pointer-events: none;
+  }
+
+.doc-file p {
+  align-items: center;
+  color: #a08f8a;
+  display: flex;
+  flex-direction: row;
+  font-size: 0.7rem;
+  font-weight: 500;
+  min-width: 2rem;
+  padding: 0.3rem 2.2rem;
+  font-family: "Nunito",sans-serif;
+}
+.doc-file i {
+  color: #a08f8a;
 }
