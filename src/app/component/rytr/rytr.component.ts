@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Editor } from 'ngx-editor';
 
 import { HttpClient } from '@angular/common/http';
-import {NgxSpinnerService} from 'ngx-spinner';
 @Component({
   selector: 'app-rytr',
   templateUrl: './rytr.component.html',
@@ -13,14 +12,14 @@ export class RytrComponent implements OnInit , OnDestroy{
 
   editor!: Editor;
   html:any;
-context:any;
-topic: any;
+context = '';
+topic = '';
 
 
   data:any
 
 
-  constructor(private http : HttpClient ,private spinner: NgxSpinnerService) { }
+  constructor(private http : HttpClient) { }
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -30,20 +29,22 @@ topic: any;
 
 
   }
-
+  public isData = true;
   getValue() {
-
-    this.spinner.show();
-  this.http.post("https://technoversesms.com/openai-api/api/ai" +this.context , + this.topic).subscribe(
+    console.log('context', this.context);
+    console.log('topic', this.topic);
+    this.isData = false;
+    let data = {
+      "context": this.context,
+      "topic": this.topic
+    }
+  this.http.post("https://technoversesms.com/openai-api/api/ai",data).subscribe(
     (res:any) =>{
-    console.log(res);
-
-
-    this.html = res.data;
-      this.spinner.hide();
+      console.log(res);
+      this.isData = true;
+      this.html = res.data;
     });
 
-    this.spinner.hide();
     }
 
   ngOnDestroy(): void {

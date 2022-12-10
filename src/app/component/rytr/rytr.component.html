@@ -46,11 +46,23 @@
           <div>
             <label> Choose use case</label>
             <i class="fa fa-angle-down down-icon" aria-hidden="true"></i>
-            <select class="select-styl my-2"  [(ngModel)]="context">
-              <option value="" selected    >  Email </option>
-              <option> Blog-idea outline </option>
-              <option>Cover Letter</option>
+            <select class="select-styl my-2" [(ngModel)]="context">
+              <option value="Brand Name" selected>Brand Name </option>
+              <option value="Business Idea">Business Idea </option>
+              <option value="Call To Action">Call To Action</option>
+              <option value="Cover Letter">Cover Letter</option>
+              <option value="Email">Email</option>
+              <option value="Job Description">Job Description</option>
+              <option value="Blog Idea and Outline">Blog Idea and Outline</option>
             </select>
+
+            
+           
+          
+            
+            
+           
+           
           </div>
         </div>
       </div>
@@ -60,7 +72,7 @@
 
           <div>
             <label for="">Key points</label>
-            <textarea name="" id="" cols="27" rows="10" class="textarea formcontrol" [(ngModel)]="topic"></textarea>
+            <textarea name="" id="" cols="27" rows="10" class="textarea formcontrol"  [(ngModel)]="topic"></textarea>
           </div>
 
         </div>
@@ -68,7 +80,7 @@
 
       <div class="row mt-2">
         <div class="col-md-12">
-          <button  class="rytBtn" (click)="getValue()">Ryte for me<i class="fa fa-long-arrow-right mx-3" aria-hidden="true"></i> </button>
+          <button [disabled]="!isData" class="rytBtn" (click)="getValue()">Ryte for me<i class="fa fa-long-arrow-right mx-3" aria-hidden="true"></i> </button>
         </div>
       </div>
 

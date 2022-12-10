@@ -11,8 +11,8 @@ import { RytrComponent } from './component/rytr/rytr.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
-import { NgxSpinnerModule } from 'ngx-spinner';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,10 +30,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     NgxEditorModule,
     FormsModule ,
     HttpClientModule,
-    NgxSpinnerModule,
 
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
