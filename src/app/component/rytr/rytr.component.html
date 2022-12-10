@@ -46,10 +46,10 @@
           <div>
             <label> Choose use case</label>
             <i class="fa fa-angle-down down-icon" aria-hidden="true"></i>
-            <select class="select-styl my-2"  [(ngModel)]="usecase">
+            <select class="select-styl my-2"  [(ngModel)]="context">
               <option value="" selected    >  Email </option>
-              <option> Blog-idea&outline </option>
-              <option>  Video idea </option>
+              <option> Blog-idea outline </option>
+              <option>Cover Letter</option>
             </select>
           </div>
         </div>
@@ -60,7 +60,7 @@
 
           <div>
             <label for="">Key points</label>
-            <textarea name="" id="" cols="27" rows="10" class="textarea formcontrol" [(ngModel)]="keypoint"></textarea>
+            <textarea name="" id="" cols="27" rows="10" class="textarea formcontrol" [(ngModel)]="topic"></textarea>
           </div>
 
         </div>
@@ -82,7 +82,7 @@
       <div class="NgxEditor__Wrapper">
         <ngx-editor-menu [editor]="editor" > </ngx-editor-menu>
         <ngx-editor
-        
+
           [editor]="editor"
           [(ngModel)]="html"
           [innerHTML]="html"
