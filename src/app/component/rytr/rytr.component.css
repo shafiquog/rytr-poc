@@ -72,12 +72,12 @@
   font-weight: 500;
   font-size: 0.9rem;
 }
-/*select {
+select {
     -webkit-appearance: none;
     appearance: none;
   
-}*/
-
+}
+/* 
 .select-wrapper {
   position: relative;
 }
@@ -92,7 +92,7 @@
     font-weight: 900;
     margin-right: 4px;
     pointer-events: none;
-  }
+  } */
 
 .doc-file p {
   align-items: center;
@@ -107,4 +107,47 @@
 }
 .doc-file i {
   color: #a08f8a;
+}
+
+ 
+.textarea{
+  background-color: var(--background-light);
+  height: 6rem;
+  width:100%;
+  border: 1px solid #d2c9bd;
+    border-radius: 1rem;
+    padding-left: 10px;
+}
+
+.textarea:hover{
+  border: 1px solid #ff8f00;
+}
+
+.rytBtn{
+  background-color: #ff8f00;
+  border: 1px solid #ff8f00;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+  color: white;
+  width: 100%;
+    border-radius: 15px;
+    height: 2rem;
+    margin-top: 40px;
+}
+.down-icon{
+  float: right;
+  position: relative;
+  right: 10px;
+  top:45px
+   
+}
+
+
+textarea:focus-visible {
+  outline: 1px solid #ff8f00!important;
+  border-radius: 20px;
+}
+
+ngx-editor {
+  padding: 20px;
+  
 }

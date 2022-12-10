@@ -8,7 +8,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { RytrComponent } from './component/rytr/rytr.component';
-
+import { NgxEditorModule } from 'ngx-editor';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,9 @@ import { RytrComponent } from './component/rytr/rytr.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxEditorModule,
+    FormsModule
+
     
   ],
   providers: [],
