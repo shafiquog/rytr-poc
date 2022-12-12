@@ -46,7 +46,7 @@
           <div>
             <label> Choose use case</label>
             <i class="fa fa-angle-down down-icon" aria-hidden="true"></i>
-            <select class="select-styl my-2" [(ngModel)]="context">
+            <select class="select-styl my-2"  (change)="getcontext()" [(ngModel)]="context">
               <option value="Brand Name" selected>Brand Name </option>
               <option value="Business Idea">Business Idea </option>
               <option value="Call To Action">Call To Action</option>
@@ -68,7 +68,24 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row input-styl" *ngIf="Businessidea ">
+        <div class="col-md-12">
+          <label>Interest</label>
+          <input type="text" placeholder="write your interests"  [(ngModel)]="interest"/>
+        </div>
+        <div class="col-md-12">
+          <label>Skill</label>
+          <input type="text" placeholder="write your Skills" [(ngModel)]="skill" />
+        </div>
+      </div>
+
+
+
+
+
+
+
+      <div class="row" *ngIf="hidetopic">
         <div class="col-md-12">
 
           <div>
