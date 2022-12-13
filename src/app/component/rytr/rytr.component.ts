@@ -76,7 +76,8 @@ export class RytrComponent implements OnInit , OnDestroy{
 
   }
   getcontext() {
-    if(this.rytrForm.value.context == 'Business Idea'){
+
+    if(this.rytrForm.value.context[0].item_text== 'Business Idea'){
       this.label1 ='Interest';
       this.placeholder1 = 'Marketing Sass';
       this.label2= 'Skills';
@@ -84,12 +85,12 @@ export class RytrComponent implements OnInit , OnDestroy{
 
       this.Businessidea = true;
       this.hidetopic = false;
-    }if(this.rytrForm.value.context == 'Email'){
+    }if(this.rytrForm.value.context[0].item_text == 'Email'){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Key Points';
       this.placeholder1 = 'Welcome to Rytr. Are you enjoying the experience?'
-    }if(this.rytrForm.value.context == 'Cover Letter'){
+    }if(this.rytrForm.value.context[0].item_text== 'Cover Letter'){
       this.label1 ='Job Role';
       this.placeholder1 = 'Digital Marketer ';
       this.label2= 'Job Skills';
@@ -98,13 +99,13 @@ export class RytrComponent implements OnInit , OnDestroy{
       this.Businessidea = true;
       this.hidetopic = false;
     }
-    if(this.rytrForm.value.context == 'Call To Action'){
+    if(this.rytrForm.value.context[0].item_text== 'Call To Action'){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Description';
       this.placeholder1 = 'An Ai writing assistant that help you automatically generate content for anything.'
     }
-    if(this.rytrForm.value.context == 'Job Description'){
+    if(this.rytrForm.value.context[0].item_text == 'Job Description'){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Job Role';
