@@ -2,105 +2,93 @@
   <div class="row">
     <div class=" col-lg-3 col-md-5 col-sm-12 drop-section">
 
-      <div class="row">
-        <div class="col-md-6">
-          <div>
-            <label> Select language</label>
-            <i class="fa fa-angle-down down-icon" aria-hidden="true"></i>
-            <select class="select-styl my-2">
-              <option>
-                Arabic
-              </option>
-              <option>
-                Bulgarian
-              </option>
-              <option>
-                Chinese
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-6">
+<!--      <div class="row">-->
+<!--        <div class="col-md-6">-->
+<!--          <div>-->
+<!--            <label> Select language</label>-->
+<!--            <i class="fa fa-angle-down down-icon" aria-hidden="true"></i>-->
+<!--            <select class="select-styl my-2">-->
+<!--              <option>-->
+<!--                Arabic-->
+<!--              </option>-->
+<!--              <option>-->
+<!--                Bulgarian-->
+<!--              </option>-->
+<!--              <option>-->
+<!--                Chinese-->
+<!--              </option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
 
-          <div>
-            <label> Select tone</label>
-            <i class="fa fa-angle-down  down-icon" aria-hidden="true"></i>
-            <select class="select-styl my-2">
-              <option>
-                Convincing
-              </option>
-              <option>
-                Assertive
-              </option>
-              <option>
-                Critical
-              </option>
-            </select>
-          </div>
-        </div>
+<!--          <div>-->
+<!--            <label> Select tone</label>-->
+<!--            <i class="fa fa-angle-down  down-icon" aria-hidden="true"></i>-->
+<!--            <select class="select-styl my-2">-->
+<!--              <option>-->
+<!--                Convincing-->
+<!--              </option>-->
+<!--              <option>-->
+<!--                Assertive-->
+<!--              </option>-->
+<!--              <option>-->
+<!--                Critical-->
+<!--              </option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<form  [formGroup]="rytrForm" (ngSubmit)="getValue(rytrForm)">
+  <div class="row my-2">
+    <div class="col-md-12">
+      <div>
+        <label> Choose use case</label>
+        <i class="fa fa-angle-down down-icon" aria-hidden="true"></i>
+
+        <ng-multiselect-dropdown
+
+          [settings]="dropdownSettings"
+          [data]="dropdownList"
+          (change)="getcontext()"
+          formControlName="context"
+        >
+        </ng-multiselect-dropdown>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row input-styl" *ngIf="Businessidea ">
+    <div class="col-md-12">
+      <label>{{this.label1}}</label>
+      <input type="text"  [placeholder]="this.placeholder1"  formControlName="interest"/>
+    </div>
+    <div class="col-md-12">
+      <label>{{this.label2}}</label>
+      <input type="text" [placeholder]="this.placeholder2" formControlName="skill" />
+    </div>
+  </div>
+
+  <div class="row" *ngIf="hidetopic">
+    <div class="col-md-12">
+
+      <div>
+        <label for="">{{this.label1}}</label>
+        <textarea name="" id="" cols="27" rows="10"  [placeholder]="this.placeholder1" class="textarea formcontrol"  formControlName="topic"></textarea>
       </div>
 
+    </div>
+  </div>
 
-      <div class="row my-2">
-        <div class="col-md-12">
-          <div>
-            <label> Choose use case</label>
-            <i class="fa fa-angle-down down-icon" aria-hidden="true"></i>
-            <select class="select-styl my-2"  (change)="getcontext()" [(ngModel)]="context">
-              <option value="Brand Name" selected>Brand Name </option>
-              <option value="Business Idea">Business Idea </option>
-              <option value="Call To Action">Call To Action</option>
-              <option value="Cover Letter">Cover Letter</option>
-              <option value="Email">Email</option>
-              <option value="Chat">Chat</option>
-              <option value="Job Description">Job Description</option>
-              <option value="Blog Idea and Outline">Blog Idea and Outline</option>
-            </select>
+  <div class="row mt-2">
+    <div class="col-md-12">
+      <button   type="submit" class="rytBtn"  >Ryte for me<i class="fa fa-long-arrow-right mx-3" aria-hidden="true"></i> </button>
+    </div>
+  </div>
+</form>
 
-
-
-
-
-
-
-
-          </div>
-        </div>
-      </div>
-
-      <div class="row input-styl" *ngIf="Businessidea ">
-        <div class="col-md-12">
-          <label>Interest</label>
-          <input type="text" placeholder="write your interests"  [(ngModel)]="interest"/>
-        </div>
-        <div class="col-md-12">
-          <label>Skill</label>
-          <input type="text" placeholder="write your Skills" [(ngModel)]="skill" />
-        </div>
-      </div>
-
-
-
-
-
-
-
-      <div class="row" *ngIf="hidetopic">
-        <div class="col-md-12">
-
-          <div>
-            <label for="">Key points</label>
-            <textarea name="" id="" cols="27" rows="10" class="textarea formcontrol"  [(ngModel)]="topic"></textarea>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="row mt-2">
-        <div class="col-md-12">
-          <button [disabled]="!isData" class="rytBtn" (click)="getValue()">Ryte for me<i class="fa fa-long-arrow-right mx-3" aria-hidden="true"></i> </button>
-        </div>
-      </div>
 
 
 

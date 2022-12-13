@@ -9,10 +9,12 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { RytrComponent } from './component/rytr/rytr.component';
 import { NgxEditorModule } from 'ngx-editor';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AppRoutingModule,
     NgxEditorModule,
     FormsModule ,
+    ReactiveFormsModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
+
 
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }
