@@ -1,7 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
- 
+
 .NgxEditor__Wrapper{
     min-height: 87vh!important;
     margin-top: 10px;
 }
+
+.multiselect-dropdown .dropdown-btn {
+  border-radius: 20px!important;
+  background-color: #fff!important;
+}
+.multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+  background: #ff8f00!important;
+  border:2px solid #ff8f00!important;
+  border-radius: 20px!important;
+}
+

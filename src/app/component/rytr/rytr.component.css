@@ -7,7 +7,7 @@
 .select-styl{
     width:100%;
   align-items: center;
-  background-color: var(--background-light);
+
   border: 1px solid #d2c9bd;
   border-radius: 1.4rem;
   color: #301400;
@@ -110,11 +110,11 @@ select {
 
 
 .textarea{
-  background-color: var(--background-light);
+
   height: 6rem;
   width:100%;
   border: 1px solid #d2c9bd;
-    border-radius: 1rem;
+    border-radius: .5rem;
     padding-left: 10px;
 }
 
@@ -132,6 +132,10 @@ select {
     height: 2rem;
     margin-top: 40px;
 }
+
+.rytBtn disabled{
+  background-color: red;
+}
 .down-icon{
   float: right;
   position: relative;
@@ -143,7 +147,7 @@ select {
 
 textarea:focus-visible {
   outline: 1px solid #ff8f00!important;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 
 ngx-editor {
@@ -168,4 +172,14 @@ ngx-editor {
   padding: 0 0.5rem;
   transition-duration: .2s;
   transition-property: border;
+
+}
+.input-styl input:hover{
+  border: 1px solid #ff8f00;
+}
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }

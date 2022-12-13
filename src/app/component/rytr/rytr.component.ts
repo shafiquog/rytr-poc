@@ -20,7 +20,7 @@ export class RytrComponent implements OnInit , OnDestroy{
   placeholder1 =  'Welcome to Rytr. Are you enjoying the experience?';
   label2= '' ;
   placeholder2 = '';
-  public isData = true;
+  public isData = false;
 
   Businessidea = false;
   hidetopic = true;
@@ -76,7 +76,7 @@ export class RytrComponent implements OnInit , OnDestroy{
 
   }
   getcontext() {
-
+          console.log(this.rytrForm.value.context[0]);
     if(this.rytrForm.value.context[0].item_text== 'Business Idea'){
       this.label1 ='Interest';
       this.placeholder1 = 'Marketing Sass';
@@ -115,37 +115,40 @@ export class RytrComponent implements OnInit , OnDestroy{
 
 
   getValue(rytrForm : FormGroup) {
-    console.log('context', rytrForm.value.context);
 
-    this.isData = false;
 
-    if(  rytrForm.value.context == 'Business Idea' ) {
+    this.isData = true;
 
+    if(this.rytrForm.value.context[0].item_text == 'Business Idea' ) {
 
       this.data = {
-        "context": 'suggest me the' + ' ' + rytrForm.value.context + 'for'+rytrForm.value.interest + 'and'+ rytrForm.value.skill,
+        "context": 'suggest me the' + ' ' + this.rytrForm.value.context[0].item_text + 'for'+rytrForm.value.interest + 'and'+ rytrForm.value.skill,
 
       }
-    }
-      if(rytrForm.value.context == 'Email') {
+    }if(this.rytrForm.value.context[0].item_text == 'Email') {
         this.Businessidea = false;
         this.data = {
-          "context": 'write an' + ' ' + rytrForm.value.context + ' ' + 'for',
+          "context": 'write an' + ' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
           "topic": rytrForm.value.topic
         }
       }
-    if(rytrForm.value.context == 'Job Description' || rytrForm.value.context == 'Cover Letter'){
+    if(this.rytrForm.value.context[0].item_text == 'Job Description' ||this.rytrForm.value.context[0].item_text == 'Cover Letter'){
       this.Businessidea = false;
       this.data = {
-        "context": 'write a ' + ' ' + rytrForm.value.context + ' ' + 'for',
+        "context": 'write a ' + ' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
+        "topic": rytrForm.value.topic
+      }
+    } else {
+      this.data = {
+        "context":  this.rytrForm.value.context[0].item_text  ,
         "topic": rytrForm.value.topic
       }
     }
 
-
+         console.log('prompt' , this.data);
     this.http.post("https://technoversesms.com/openai-api/api/ai",this.data).subscribe(
       (res:any) =>{
-        this.isData = true;
+        this.isData = false;
         this.html = res.data;
       });
     this.rytrForm.reset();
