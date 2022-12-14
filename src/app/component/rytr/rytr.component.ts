@@ -21,7 +21,7 @@ export class RytrComponent implements OnInit , OnDestroy{
   label2= '' ;
   placeholder2 = '';
   public isData = false;
-
+  display = "none";
   Businessidea = false;
   hidetopic = true;
 
@@ -29,6 +29,7 @@ export class RytrComponent implements OnInit , OnDestroy{
   dropdownSettings!: IDropdownSettings ;
   dropdownList :any= [];
  rytrForm : FormGroup;
+ selectedItems:any;
 
 
 
@@ -53,7 +54,8 @@ export class RytrComponent implements OnInit , OnDestroy{
       { item_id: 5, item_text: 'Call To Action' },
       { item_id: 6, item_text: 'Email' },
       { item_id: 7, item_text: 'Job Description'},
-      { item_id: 8, item_text: 'Call To Action' }
+      { item_id: 8, item_text: 'Call To Action' },
+      { item_id: 9, item_text: 'Chat' }
 
     ];
 
@@ -68,6 +70,13 @@ export class RytrComponent implements OnInit , OnDestroy{
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+
+    this.selectedItems = [
+      { item_id: 9, item_text: 'Chat' }
+    ];
+
+
+
     this.editor = new Editor();
 
 
@@ -114,6 +123,29 @@ export class RytrComponent implements OnInit , OnDestroy{
   }
 
 
+  openmodel(){
+
+
+    this.display = 'block';
+  }
+  onCloseHandled(){
+    this.display = 'none';
+  }
+
+  summarizeText(){
+
+    let data = {
+      "context": 'summarize this topic:'  +this.html,
+    }
+
+    this.http.post("https://technoversesms.com/openai-api/api/ai",this.data).subscribe(
+      (res:any) =>{
+
+       this.html =   this.html+'<b>Summary:</b>'+ res.data;
+      });
+    this.display = 'none';
+  }
+
   getValue(rytrForm : FormGroup) {
 
 
@@ -125,7 +157,7 @@ export class RytrComponent implements OnInit , OnDestroy{
         "context": 'suggest me the' + ' ' + this.rytrForm.value.context[0].item_text + 'for'+rytrForm.value.interest + 'and'+ rytrForm.value.skill,
 
       }
-    }if(this.rytrForm.value.context[0].item_text == 'Email') {
+    }if(this.rytrForm.value.context[0].item_text == 'Email' || this.rytrForm.value.context[0].item_text == 'Chat') {
         this.Businessidea = false;
         this.data = {
           "context": 'write an' + ' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
@@ -151,7 +183,7 @@ export class RytrComponent implements OnInit , OnDestroy{
         this.isData = false;
         this.html = res.data;
       });
-    this.rytrForm.reset();
+
 
 
 

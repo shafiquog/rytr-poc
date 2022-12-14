@@ -2,43 +2,7 @@
   <div class="row">
     <div class=" col-lg-3 col-md-5 col-sm-12 drop-section">
 
-<!--      <div class="row">-->
-<!--        <div class="col-md-6">-->
-<!--          <div>-->
-<!--            <label> Select language</label>-->
-<!--            <i class="fa fa-angle-down down-icon" aria-hidden="true"></i>-->
-<!--            <select class="select-styl my-2">-->
-<!--              <option>-->
-<!--                Arabic-->
-<!--              </option>-->
-<!--              <option>-->
-<!--                Bulgarian-->
-<!--              </option>-->
-<!--              <option>-->
-<!--                Chinese-->
-<!--              </option>-->
-<!--            </select>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="col-md-6">-->
 
-<!--          <div>-->
-<!--            <label> Select tone</label>-->
-<!--            <i class="fa fa-angle-down  down-icon" aria-hidden="true"></i>-->
-<!--            <select class="select-styl my-2">-->
-<!--              <option>-->
-<!--                Convincing-->
-<!--              </option>-->
-<!--              <option>-->
-<!--                Assertive-->
-<!--              </option>-->
-<!--              <option>-->
-<!--                Critical-->
-<!--              </option>-->
-<!--            </select>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
 
 <form  [formGroup]="rytrForm" (ngSubmit)="getValue(rytrForm)">
   <div class="row my-2">
@@ -50,6 +14,7 @@
         <ng-multiselect-dropdown
 
           [settings]="dropdownSettings"
+           [(ngModel)]="selectedItems"
           [data]="dropdownList"
           (onSelect)="getcontext()"
           formControlName="context"
@@ -94,19 +59,40 @@
 
 
     </div>
+
+
     <div class="col-lg-9 col-md-7 col-sm-12">
 
 
       <div class="NgxEditor__Wrapper">
         <ngx-editor-menu [editor]="editor" > </ngx-editor-menu>
         <ngx-editor
+
           [editor]="editor"
           [(ngModel)]="html"
+          (dblclick)="openmodel()"
           [placeholder]="'Type here...'"
         ></ngx-editor>
       </div>
 
 
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Summarize</h4>
+          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure , you want to summarize this test</p>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"  (click)="summarizeText()">summarize</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
