@@ -29,7 +29,7 @@ export class RytrComponent implements OnInit , OnDestroy{
   dropdownSettings!: IDropdownSettings ;
   dropdownList :any= [];
  rytrForm : FormGroup;
-   selectedItems:any;
+ selectedItems:any;
 
 
 
@@ -54,7 +54,8 @@ export class RytrComponent implements OnInit , OnDestroy{
       { item_id: 5, item_text: 'Call To Action' },
       { item_id: 6, item_text: 'Email' },
       { item_id: 7, item_text: 'Job Description'},
-      { item_id: 8, item_text: 'Call To Action' }
+      { item_id: 8, item_text: 'Call To Action' },
+      { item_id: 9, item_text: 'Chat' }
 
     ];
 
@@ -71,7 +72,7 @@ export class RytrComponent implements OnInit , OnDestroy{
     };
 
     this.selectedItems = [
-      { item_id: 6, item_text: 'Email' },
+      { item_id: 9, item_text: 'Chat' }
     ];
 
 
@@ -140,7 +141,7 @@ export class RytrComponent implements OnInit , OnDestroy{
     this.http.post("https://technoversesms.com/openai-api/api/ai",this.data).subscribe(
       (res:any) =>{
 
-       this.html = this.html + res.data;
+       this.html =   this.html+'<b>Summary:</b>'+ res.data;
       });
     this.display = 'none';
   }
@@ -156,7 +157,7 @@ export class RytrComponent implements OnInit , OnDestroy{
         "context": 'suggest me the' + ' ' + this.rytrForm.value.context[0].item_text + 'for'+rytrForm.value.interest + 'and'+ rytrForm.value.skill,
 
       }
-    }if(this.rytrForm.value.context[0].item_text == 'Email') {
+    }if(this.rytrForm.value.context[0].item_text == 'Email' || this.rytrForm.value.context[0].item_text == 'Chat') {
         this.Businessidea = false;
         this.data = {
           "context": 'write an' + ' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
@@ -182,7 +183,7 @@ export class RytrComponent implements OnInit , OnDestroy{
         this.isData = false;
         this.html = res.data;
       });
-    this.rytrForm.reset();
+
 
 
 
