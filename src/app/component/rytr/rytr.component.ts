@@ -85,21 +85,30 @@ export class RytrComponent implements OnInit , OnDestroy{
 
   }
   getcontext() {
-          console.log(this.rytrForm.value.context[0]);
+  //debugger;
+    this.rytrForm.patchValue({
+      topic: "",
+      skill: "",
+      interest: "",
+
+    });
     if(this.rytrForm.value.context[0].item_text== 'Business Idea'){
       this.label1 ='Interest';
       this.placeholder1 = 'Marketing Sass';
       this.label2= 'Skills';
       this.placeholder2 = 'copy writing,marketing ,AI'
-
       this.Businessidea = true;
       this.hidetopic = false;
-    }if(this.rytrForm.value.context[0].item_text == 'Email'){
+      this.rytrForm.value.topic='';
+    }
+    if(this.rytrForm.value.context[0].item_text == 'Email'){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Key Points';
-      this.placeholder1 = 'Welcome to Rytr. Are you enjoying the experience?'
-    }if(this.rytrForm.value.context[0].item_text== 'Cover Letter'){
+      this.placeholder1 = 'Welcome to Rytr. Are you enjoying the experience?';
+      this.rytrForm.value.topic='';
+    }
+    if(this.rytrForm.value.context[0].item_text== 'Cover Letter'){
       this.label1 ='Job Role';
       this.placeholder1 = 'Digital Marketer ';
       this.label2= 'Job Skills';
@@ -107,18 +116,21 @@ export class RytrComponent implements OnInit , OnDestroy{
 
       this.Businessidea = true;
       this.hidetopic = false;
+      this.rytrForm.value.topic='';
     }
     if(this.rytrForm.value.context[0].item_text== 'Call To Action'){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Description';
       this.placeholder1 = 'An Ai writing assistant that help you automatically generate content for anything.'
+      this.rytrForm.value.topic='';
     }
     if(this.rytrForm.value.context[0].item_text == 'Job Description'){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Job Role';
       this.placeholder1 = 'Product Manager';
+      this.rytrForm.value.topic='';
     }
   }
 
