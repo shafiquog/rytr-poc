@@ -180,6 +180,9 @@ ngx-editor {
 button:disabled,
 button[disabled]{
   border: 1px solid #999999;
-  background-color: #cccccc;
+  background-color: lightgoldenrodyellow;
   color: #666666;
 }
+
+
+ 
