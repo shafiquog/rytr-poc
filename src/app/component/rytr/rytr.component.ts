@@ -21,7 +21,7 @@ export class RytrComponent implements OnInit , OnDestroy{
   label2= '' ;
   placeholder2 = '';
   public isData = false;
-
+  display = "none";
   Businessidea = false;
   hidetopic = true;
 
@@ -29,6 +29,7 @@ export class RytrComponent implements OnInit , OnDestroy{
   dropdownSettings!: IDropdownSettings ;
   dropdownList :any= [];
  rytrForm : FormGroup;
+   selectedItems:any;
 
 
 
@@ -68,6 +69,13 @@ export class RytrComponent implements OnInit , OnDestroy{
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+
+    this.selectedItems = [
+      { item_id: 6, item_text: 'Email' },
+    ];
+
+
+
     this.editor = new Editor();
 
 
@@ -113,6 +121,29 @@ export class RytrComponent implements OnInit , OnDestroy{
     }
   }
 
+
+  openmodel(){
+
+
+    this.display = 'block';
+  }
+  onCloseHandled(){
+    this.display = 'none';
+  }
+
+  summarizeText(){
+
+    let data = {
+      "context": 'summarize this topic:'  +this.html,
+    }
+
+    this.http.post("https://technoversesms.com/openai-api/api/ai",this.data).subscribe(
+      (res:any) =>{
+
+       this.html = this.html + res.data;
+      });
+    this.display = 'none';
+  }
 
   getValue(rytrForm : FormGroup) {
 
