@@ -16,3 +16,9 @@
   border-radius: 20px!important;
 }
 
+.multiselect-item-checkbox input + div:before {
+  border: 2px solid #ff8f00 !important;
+}
+.multiselect-item-checkbox input:checked + div:before {
+  background: #ff8f00!important;
+}
