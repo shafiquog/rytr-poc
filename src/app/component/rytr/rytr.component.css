@@ -1,8 +1,10 @@
 .drop-section {
   background: #f9f9f9;
- padding:25px;
- overscroll-behavior-y:auto;
-
+  padding: 25px;
+  overscroll-behavior-y: auto;
+  height: 100vh;
+  overflow: hidden;
+  border-right: 1px solid #eae4df;
 }
 .select-styl{
     width:100%;
@@ -185,4 +187,3 @@ button[disabled]{
 }
 
 
- 

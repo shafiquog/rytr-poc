@@ -6,8 +6,10 @@
   }
   .nav-sec {
     display: flex;
-    justify-content: end;
-    margin-right:15px;
+    margin-left:auto;
+ position:relative;
+ top:10px;
+ right:12px
   }
 .account-styl {
   border-bottom: 3px solid #ffb300;
@@ -19,3 +21,4 @@
   .account-styl a {
     color: #ffb300;
   }
+ 
