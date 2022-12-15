@@ -4,55 +4,52 @@
 
 
 
-<form  [formGroup]="rytrForm" (ngSubmit)="getValue(rytrForm)">
-  <div class="row my-2">
-    <div class="col-md-12">
-      <div>
-        <label> Choose use case</label>
+      <form [formGroup]="rytrForm" (ngSubmit)="getValue(rytrForm)">
+        <div class="row my-2">
+          <div class="col-md-12">
+            <div>
+              <label> Choose use case</label>
 
 
-        <ng-multiselect-dropdown
+              <ng-multiselect-dropdown [settings]="dropdownSettings"
+                                       [(ngModel)]="selectedItems"
+                                       [data]="dropdownList"
+                                       (onSelect)="getcontext()"
+                                       formControlName="context">
+              </ng-multiselect-dropdown>
 
-          [settings]="dropdownSettings"
-           [(ngModel)]="selectedItems"
-          [data]="dropdownList"
-          (onSelect)="getcontext()"
-          formControlName="context"
-        >
-        </ng-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
 
-      </div>
-    </div>
-  </div>
+        <div class="row input-styl" *ngIf="Businessidea ">
+          <div class="col-md-12">
+            <label>{{this.label1}}</label>
+            <input type="text" [placeholder]="this.placeholder1" formControlName="interest" />
+          </div>
+          <div class="col-md-12">
+            <label>{{this.label2}}</label>
+            <input type="text" [placeholder]="this.placeholder2" formControlName="skill" />
+          </div>
+        </div>
 
-  <div class="row input-styl" *ngIf="Businessidea ">
-    <div class="col-md-12">
-      <label>{{this.label1}}</label>
-      <input type="text"  [placeholder]="this.placeholder1"  formControlName="interest"/>
-    </div>
-    <div class="col-md-12">
-      <label>{{this.label2}}</label>
-      <input type="text" [placeholder]="this.placeholder2" formControlName="skill" />
-    </div>
-  </div>
+        <div class="row" *ngIf="hidetopic">
+          <div class="col-md-12">
 
-  <div class="row" *ngIf="hidetopic">
-    <div class="col-md-12">
+            <div>
+              <label for="">{{this.label1}}</label>
+              <textarea name="" id="" cols="27" rows="10" [placeholder]="this.placeholder1" class="textarea formcontrol" formControlName="topic"></textarea>
+            </div>
 
-      <div>
-        <label for="">{{this.label1}}</label>
-        <textarea name="" id="" cols="27" rows="10"  [placeholder]="this.placeholder1" class="textarea formcontrol"  formControlName="topic"></textarea>
-      </div>
+          </div>
+        </div>
 
-    </div>
-  </div>
-
-  <div class="row mt-2">
-    <div class="col-md-12">
-      <button   type="submit" [disabled]=" isData" class="rytBtn"  >Ryte for me<i class="fa fa-long-arrow-right mx-3" aria-hidden="true"></i> </button>
-    </div>
-  </div>
-</form>
+        <div class="row mt-2">
+          <div class="col-md-12">
+            <button type="submit" [disabled]=" isData" class="rytBtn">Ryte for me<i class="fa fa-long-arrow-right mx-3" aria-hidden="true"></i> </button>
+          </div>
+        </div>
+      </form>
 
 
 
@@ -65,35 +62,42 @@
 
 
       <div class="NgxEditor__Wrapper">
-        <ngx-editor-menu [editor]="editor" > </ngx-editor-menu>
-        <ngx-editor
-
-          [editor]="editor"
-          [(ngModel)]="html"
-          (dblclick)="openmodel()"
-          [placeholder]="'Type here...'"
-        ></ngx-editor>
+        <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+        <ngx-editor [editor]="editor"
+                    [(ngModel)]="html"
+                    (dblclick)="openmodel()"
+                    [placeholder]="'Type here...'"></ngx-editor>
       </div>
 
 
     </div>
   </div>
 
-  <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Summarize</h4>
-          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure , you want to summarize this test</p>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"  (click)="summarizeText()">summarize</button>
+  <!--  <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Summarize</h4>
+            <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure , you want to summarize this test</p>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"  (click)="summarizeText()">summarize</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>-->
 
+
+  <div  class="menu-ui  hide-elemnt" id="tooltip_menu">
+    <a class="mx-2"  (click)="command()"><i class="fa fa-transgender" aria-hidden="true"></i> Command</a>
+    <a class="mx-2"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Improve</a>
+    <a class="mx-2"> <i class="fa fa-compress" aria-hidden="true"></i> Rephrase</a>
+    <a class="mx-2"> <i class="fa fa-paragraph" aria-hidden="true"></i> Paragraph</a>
+    <a class="mx-2" > <i class="fa fa-picture-o" aria-hidden="true"></i> All Image</a>
+    <a class="mx-2"> <i class="fa fa-pencil" aria-hidden="true"></i> Continue Ryting</a>
+    <a   class="mx-2"><i class="fa fa-ellipsis-v" aria-hidden="true"></i>  More</a>
+  </div>

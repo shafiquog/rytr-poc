@@ -4,6 +4,7 @@ import { Editor } from 'ngx-editor';
 import { HttpClient } from '@angular/common/http';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { asNativeElements } from '@angular/core';
 @Component({
   selector: 'app-rytr',
   templateUrl: './rytr.component.html',
@@ -11,9 +12,10 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class RytrComponent implements OnInit , OnDestroy{
 
-
+  pageX: any;
+  pageY: any;
   editor!: Editor;
-  html:any;
+  html= "";
 
   data:any
   label1= 'Key Points' ;
@@ -46,7 +48,35 @@ export class RytrComponent implements OnInit , OnDestroy{
   }
 
   ngOnInit(): void {
+    document.addEventListener("mouseup", () => {
+      const element = document.querySelector("#tooltip_menu");
+      element?.classList.remove("display-elemnt");
+      element?.classList.add("hide-elemnt");
+      if (this.html !== "") {
+        element?.classList.remove("hide-elemnt");
+        element?.classList.add("display-elemnt");
+      }
+      document.onclick = function (e) {
+
+        const element = document.querySelector("#tooltip_menu");
+        
+          element?.classList.add("hide-elemnt");
+          element?.classList.remove("display-elemnt");
+        }
+       
+        console.log('hello')
+ 
+    
+    });
+
+ 
+ 
+
+
+
+
     this.dropdownList = [
+      { item_id: 9, item_text: 'Chat' },
       { item_id: 1, item_text: 'Blog Idea and Outline' },
       { item_id: 2, item_text: 'Blog Section Writing' },
       { item_id: 3, item_text: 'Brand Name' },
@@ -54,8 +84,8 @@ export class RytrComponent implements OnInit , OnDestroy{
       { item_id: 5, item_text: 'Call To Action' },
       { item_id: 6, item_text: 'Email' },
       { item_id: 7, item_text: 'Job Description'},
-      { item_id: 8, item_text: 'Call To Action' },
-      { item_id: 9, item_text: 'Chat' }
+      { item_id: 8, item_text: 'Call To Action' }
+    
 
     ];
 
@@ -123,11 +153,18 @@ export class RytrComponent implements OnInit , OnDestroy{
   }
 
 
-  openmodel(){
+  openmodel() {
+ 
 
 
-    this.display = 'block';
+
+
+
   }
+
+
+
+
   onCloseHandled(){
     this.display = 'none';
   }
@@ -192,5 +229,10 @@ export class RytrComponent implements OnInit , OnDestroy{
   ngOnDestroy(): void {
     this.editor.destroy();
   }
+
+  command() {
+    console.log('hello sarmad')
+  }
+
 
 }
