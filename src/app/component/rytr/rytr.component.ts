@@ -13,7 +13,7 @@ export class RytrComponent implements OnInit , OnDestroy{
 
 
   editor!: Editor;
-  html:any;
+  html= "Hello! What can I do for you?";
 
   data:any
   label1= 'Key Points' ;
@@ -44,8 +44,9 @@ export class RytrComponent implements OnInit , OnDestroy{
 
     })
   }
-
+   public selectedText :any;
   ngOnInit(): void {
+    let pageX:any, pageY :any;
     this.dropdownList = [
       { item_id: 1, item_text: 'Blog Idea and Outline' },
       { item_id: 2, item_text: 'Blog Section Writing' },
@@ -58,8 +59,6 @@ export class RytrComponent implements OnInit , OnDestroy{
       { item_id: 9, item_text: 'Chat' }
 
     ];
-
-
     this.dropdownSettings = {
       singleSelection: true,
       closeDropDownOnSelection: true,
@@ -70,18 +69,41 @@ export class RytrComponent implements OnInit , OnDestroy{
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
-
     this.selectedItems = [
       { item_id: 9, item_text: 'Chat' }
     ];
-
-
-
     this.editor = new Editor();
 
+    document.addEventListener("mouseup", () => {
+      //console.log("mouse up called");
+     // debugger;
+      let selection = document.getSelection();
+      let selectedText = selection?.toString();
+      const element = document.querySelector("#tooltip_menu");
+      this.selectedText = selectedText;
 
+      if (selectedText !== "") {
+        let rect = document.querySelector(".editor-view")?.getBoundingClientRect();
+        // @ts-ignore
+        element.style.left = pageX - Math.round(rect.left) + "px";
+        // @ts-ignore
+        element.style.top = pageY - Math.round(rect.top) - 0 + "px";
+        element?.classList.add("display-elemnt");
+        element?.classList.remove("hide-elemnt");
 
-
+        console.log("Selection text is", this.selectedText)
+      }else{
+        element?.classList.remove("display-elemnt");
+        element?.classList.add("hide-elemnt");
+        console.log("No Selection", this.selectedText)
+      }
+    });
+    document.addEventListener("mousedown", (e) => {
+      pageX = e.pageX;
+      pageY = e.pageY;
+      console.log("pageX-",pageX);
+      console.log("pageY-",pageY);
+    });
 
   }
   getcontext() {
@@ -123,10 +145,8 @@ export class RytrComponent implements OnInit , OnDestroy{
   }
 
 
-  openmodel(){
-
-
-    this.display = 'block';
+  openmodel(item:any){
+    console.log(item);
   }
   onCloseHandled(){
     this.display = 'none';

@@ -1,26 +1,18 @@
-<div class="container-fluid">
+<div class="container-fluid editor-view">
   <div class="row">
     <div class=" col-lg-3 col-md-5 col-sm-12 drop-section">
-
-
-
 <form  [formGroup]="rytrForm" (ngSubmit)="getValue(rytrForm)">
   <div class="row my-2">
     <div class="col-md-12">
       <div>
         <label> Choose use case</label>
-
-
         <ng-multiselect-dropdown
-
           [settings]="dropdownSettings"
            [(ngModel)]="selectedItems"
           [data]="dropdownList"
           (onSelect)="getcontext()"
-          formControlName="context"
-        >
+          formControlName="context">
         </ng-multiselect-dropdown>
-
       </div>
     </div>
   </div>
@@ -53,32 +45,19 @@
     </div>
   </div>
 </form>
-
-
-
-
-
     </div>
-
-
     <div class="col-lg-9 col-md-7 col-sm-12">
-
-
       <div class="NgxEditor__Wrapper">
         <ngx-editor-menu [editor]="editor" > </ngx-editor-menu>
         <ngx-editor
-
           [editor]="editor"
           [(ngModel)]="html"
-          (dblclick)="openmodel()"
-          [placeholder]="'Type here...'"
-        ></ngx-editor>
+          [placeholder]="'Type here...'">
+        </ngx-editor>
       </div>
-
 
     </div>
   </div>
-
   <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -97,3 +76,13 @@
   </div>
 </div>
 
+
+<div  class="menu-ui  hide-elemnt" id="tooltip_menu">
+  <a class="mx-2" ><i class="fa fa-transgender" aria-hidden="true"></i> Command</a>
+  <a class="mx-2"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Improve</a>
+  <a class="mx-2"> <i class="fa fa-compress" aria-hidden="true"></i> Rephrase</a>
+  <a class="mx-2"> <i class="fa fa-paragraph" aria-hidden="true"></i> Paragraph</a>
+  <a class="mx-2" > <i class="fa fa-picture-o" aria-hidden="true"></i> All Image</a>
+  <a class="mx-2"> <i class="fa fa-pencil" aria-hidden="true"></i> Continue Ryting</a>
+  <a   class="mx-2"><i class="fa fa-ellipsis-v" aria-hidden="true"></i>  More</a>
+</div>
