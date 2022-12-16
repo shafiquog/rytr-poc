@@ -77,12 +77,16 @@
 </div>
 
 
-<div  class="menu-ui  hide-elemnt" id="tooltip_menu">
-  <a class="mx-2" ><i class="fa fa-transgender" aria-hidden="true"></i> Command</a>
-  <a class="mx-2"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Improve</a>
-  <a class="mx-2"> <i class="fa fa-compress" aria-hidden="true"></i> Rephrase</a>
+<div class="menu-ui  hide-elemnt" id="tooltip_menu">
+
+  <ul class="actions-li" >
+    <li *ngFor="let item of action_items" (click)="triggerAction(item)"><i class="fa {{item.icon}}" aria-hidden="true"></i> {{item.name}}</li>
+  </ul>
+
+<!--  <a class="mx-2"> <i class="fa fa-compress" aria-hidden="true"></i> Rephrase</a>
   <a class="mx-2"> <i class="fa fa-paragraph" aria-hidden="true"></i> Paragraph</a>
-  <a class="mx-2" > <i class="fa fa-picture-o" aria-hidden="true"></i> All Image</a>
-  <a class="mx-2"> <i class="fa fa-pencil" aria-hidden="true"></i> Continue Ryting</a>
-  <a   class="mx-2"><i class="fa fa-ellipsis-v" aria-hidden="true"></i>  More</a>
+  <a class="mx-2"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Improve</a>
+  <a class="mx-2"> <i class="fa fa-picture-o" aria-hidden="true"></i> All Image</a>
+  <a class="mx-2"> <i class="fa fa-pencil" aria-hidden="true"></i> Continue Writing</a>
+  <a class="mx-2"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Shorten</a>-->
 </div>

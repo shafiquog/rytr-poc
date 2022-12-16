@@ -32,6 +32,51 @@ export class RytrComponent implements OnInit , OnDestroy{
  selectedItems:any;
 
 
+  action_items = [
+    {
+      id: 1,
+      name: 'Rephrase',
+      icon: 'fa-compress',
+      context:'Rephrase selected text to make it sound different'
+
+    },
+    {
+      id: 2,
+      name: 'Paragraph',
+      icon: 'fa-paragraph',
+      context: 'Write a Paragraph on Selected text'
+
+    },
+    {
+      id: 3,
+      name: 'Improve',
+      icon: 'fa-thumbs-o-up',
+      context: 'Correct grammar and improve the readability of text'
+
+    },
+    {
+      id: 4,
+      name: 'AI image',
+      icon: 'fa-picture-o',
+      context: 'Auto Create Image with text'
+
+    },
+    {
+      id: 5,
+      name: 'Continue Writing',
+      icon: 'fa-picture-o',
+      context: 'Auto Write the next sentence'
+
+    },
+    {
+      id: 6,
+      name: 'Shorten',
+      icon: 'fa-sort-amount-desc',
+      context: 'Reduce length of selected text to make it succinct and clear'
+
+    },
+    ]
+
 
   constructor(private http : HttpClient , private fb:FormBuilder) {
 
@@ -80,12 +125,15 @@ export class RytrComponent implements OnInit , OnDestroy{
       let selection = document.getSelection();
       let selectedText = selection?.toString();
       const element = document.querySelector("#tooltip_menu");
-      this.selectedText = selectedText;
+      
 
       if (selectedText !== "") {
+        this.selectedText = selectedText;
         let rect = document.querySelector(".editor-view")?.getBoundingClientRect();
         // @ts-ignore
-        element.style.left = pageX - Math.round(rect.left) + "px";
+        let left = pageX - Math.round(rect.left) + "px";
+        // @ts-ignore
+        element.style.left = left;
         // @ts-ignore
         element.style.top = pageY - Math.round(rect.top) - 0 + "px";
         element?.classList.add("display-elemnt");
@@ -211,6 +259,24 @@ export class RytrComponent implements OnInit , OnDestroy{
 
   ngOnDestroy(): void {
     this.editor.destroy();
+  }
+  triggerAction(item: any) {
+    let post_data = {
+      "context": item.context,
+      "topic": this.selectedText
+    }
+    console.log("post data obj", post_data);
+    if (this.selectedText.length > 0) {
+      this.http.post("https://technoversesms.com/openai-api/api/ai", post_data).subscribe(
+        (res: any) => {
+
+          this.html = this.html + res.data;
+        });
+    } else {
+      console.log("no selection");
+    }
+  
+
   }
 
 }

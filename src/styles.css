@@ -22,3 +22,7 @@
 .multiselect-item-checkbox input:checked + div:before {
   background: #ff8f00!important;
 }
+.NgxEditor {
+  padding-left: 65px !important;
+  padding-right: 65px !important;
+}
