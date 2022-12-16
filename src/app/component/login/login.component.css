@@ -5,6 +5,8 @@ html, body {
 .content-helo {
   background: #f9f9f9;
   border-right: 1px solid #eae4df;
+  height:100vh;
+  overflow:hidden;
 }
 .hello-div {
   padding: 30px;
@@ -129,4 +131,8 @@ font-primary: "Nunito", sans-serif!important;
 .main-content {
   border-top: 1px solid #eae4df;
   border-bottom: 1px solid #eae4df;
+}
+.txt-bot-styl {
+  line-height: 15px;
+  font-size: 14px;
 }
