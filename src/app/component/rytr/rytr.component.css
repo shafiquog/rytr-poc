@@ -208,14 +208,15 @@ button[disabled]{
 
 .actions-li{
     list-style:none;
-    display:flex;
-    gap:30px;
-    align-items:center;
+  padding:15px;
 }
 .actions-li li{
-    position:relative;
-    top:8px;
-    right:14px;
+  border-bottom: 1px solid  #f0f0f0;
+  padding: 6px;
+}
+.actions-li li:hover{
+  background: #f0f0f0;
+  border-radius: 3px
 }
 
 .NgxEditor {

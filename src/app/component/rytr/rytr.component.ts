@@ -13,7 +13,7 @@ export class RytrComponent implements OnInit , OnDestroy{
 
 
   editor!: Editor;
-  html= "Hello! What can I do for you?";
+  html= "";
 
   data:any
   label1= 'Key Points' ;
@@ -54,17 +54,17 @@ export class RytrComponent implements OnInit , OnDestroy{
       context: 'Correct grammar and improve the readability of text'
 
     },
-    {
+ /*   {
       id: 4,
       name: 'AI image',
       icon: 'fa-picture-o',
       context: 'Auto Create Image with text'
 
-    },
+    },*/
     {
       id: 5,
       name: 'Continue Writing',
-      icon: 'fa-picture-o',
+      icon: 'fa-pencil',
       context: 'Auto Write the next sentence'
 
     },
@@ -90,7 +90,10 @@ export class RytrComponent implements OnInit , OnDestroy{
     })
   }
    public selectedText :any;
+  myData  = "Pakistan\nindia";
   ngOnInit(): void {
+    this.myData = this.myData.replace('\n', '<br/>');
+   // this.myData = JSON.stringify(this.myData);
     let pageX:any, pageY :any;
     this.dropdownList = [
       { item_id: 1, item_text: 'Blog Idea and Outline' },
@@ -102,7 +105,6 @@ export class RytrComponent implements OnInit , OnDestroy{
       { item_id: 7, item_text: 'Job Description'},
       { item_id: 8, item_text: 'Call To Action' },
       { item_id: 9, item_text: 'Chat' }
-
     ];
     this.dropdownSettings = {
       singleSelection: true,
@@ -115,7 +117,7 @@ export class RytrComponent implements OnInit , OnDestroy{
       allowSearchFilter: true
     };
     this.selectedItems = [
-      { item_id: 9, item_text: 'Chat' }
+      { item_id: 1, item_text: 'Chat' }
     ];
     this.editor = new Editor();
 
@@ -125,7 +127,7 @@ export class RytrComponent implements OnInit , OnDestroy{
       let selection = document.getSelection();
       let selectedText = selection?.toString();
       const element = document.querySelector("#tooltip_menu");
-      
+
 
       if (selectedText !== "") {
         this.selectedText = selectedText;
@@ -133,29 +135,38 @@ export class RytrComponent implements OnInit , OnDestroy{
         // @ts-ignore
         let left = pageX - Math.round(rect.left) + "px";
         // @ts-ignore
+        if(pageX - Math.round(rect.left)>1000){
+          left = 1000+"px";
+        }
+        // @ts-ignore
         element.style.left = left;
         // @ts-ignore
-        element.style.top = pageY - Math.round(rect.top) - 0 + "px";
+        element.style.top = pageY - Math.round(rect.top) + "px";
         element?.classList.add("display-elemnt");
         element?.classList.remove("hide-elemnt");
 
-        console.log("Selection text is", this.selectedText)
       }else{
         element?.classList.remove("display-elemnt");
         element?.classList.add("hide-elemnt");
-        console.log("No Selection", this.selectedText)
+       // console.log("No Selection", this.selectedText)
       }
     });
     document.addEventListener("mousedown", (e) => {
       pageX = e.pageX;
       pageY = e.pageY;
-      console.log("pageX-",pageX);
-      console.log("pageY-",pageY);
+     // console.log("pageX-",pageX);
+     // console.log("pageY-",pageY);
     });
 
   }
   getcontext() {
-          console.log(this.rytrForm.value.context[0]);
+    this.rytrForm.patchValue({
+      topic: "",
+      skill: "",
+      interest: "",
+
+    });
+         // console.log(this.rytrForm.value.context[0]);
     if(this.rytrForm.value.context[0].item_text== 'Business Idea'){
       this.label1 ='Interest';
       this.placeholder1 = 'Marketing Sass';
@@ -194,7 +205,7 @@ export class RytrComponent implements OnInit , OnDestroy{
 
 
   openmodel(item:any){
-    console.log(item);
+  //  console.log(item);
   }
   onCloseHandled(){
     this.display = 'none';
@@ -222,7 +233,7 @@ export class RytrComponent implements OnInit , OnDestroy{
     if(this.rytrForm.value.context[0].item_text == 'Business Idea' ) {
 
       this.data = {
-        "context": 'suggest me the' + ' ' + this.rytrForm.value.context[0].item_text + 'for'+rytrForm.value.interest + 'and'+ rytrForm.value.skill,
+        "context": 'suggest' + ' ' + this.rytrForm.value.context[0].item_text + 's for'+rytrForm.value.interest + 'and'+ rytrForm.value.skill,
 
       }
     }if(this.rytrForm.value.context[0].item_text == 'Email' || this.rytrForm.value.context[0].item_text == 'Chat') {
@@ -235,7 +246,7 @@ export class RytrComponent implements OnInit , OnDestroy{
     if(this.rytrForm.value.context[0].item_text == 'Job Description' ||this.rytrForm.value.context[0].item_text == 'Cover Letter'){
       this.Businessidea = false;
       this.data = {
-        "context": 'write a ' + ' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
+        "context": 'write' + ' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
         "topic": rytrForm.value.topic
       }
     } else {
@@ -245,16 +256,13 @@ export class RytrComponent implements OnInit , OnDestroy{
       }
     }
 
-         console.log('prompt' , this.data);
+       //  console.log('prompt' , this.data);
     this.http.post("https://technoversesms.com/openai-api/api/ai",this.data).subscribe(
       (res:any) =>{
         this.isData = false;
         this.html = res.data;
+        //this.html = this.html.replace("\n","**");
       });
-
-
-
-
     }
 
   ngOnDestroy(): void {
@@ -265,7 +273,7 @@ export class RytrComponent implements OnInit , OnDestroy{
       "context": item.context,
       "topic": this.selectedText
     }
-    console.log("post data obj", post_data);
+   // console.log("post data obj", post_data);
     if (this.selectedText.length > 0) {
       this.http.post("https://technoversesms.com/openai-api/api/ai", post_data).subscribe(
         (res: any) => {
@@ -275,7 +283,7 @@ export class RytrComponent implements OnInit , OnDestroy{
     } else {
       console.log("no selection");
     }
-  
+
 
   }
 
