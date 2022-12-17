@@ -29,45 +29,50 @@ export class RytrComponent implements OnInit , OnDestroy{
   dropdownList :any= [];
   rytrForm : FormGroup;
   selectedItems:any;
+  action_items:any
 
-
-  action_items = [
-    {
-      id: 1,
-      name: 'Rephrase',
-      icon: 'fa-compress',
-      context:'Rephrase selected text to make it sound different'
-
-    },
-    {
-      id: 2,
-      name: 'Paragraph',
-      icon: 'fa-paragraph',
-      context: 'Write a Paragraph on Selected text'
-    },
-    {
-      id: 3,
-      name: 'Improve',
-      icon: 'fa-thumbs-o-up',
-      context: 'Correct grammar and improve the readability of text'
-
-    },
-
-    {
-      id: 5,
-      name: 'Continue Writing',
-      icon: 'fa-pencil',
-      context: 'Auto Write the next sentence'
-
-    },
-    {
-      id: 6,
-      name: 'Shorten',
-      icon: 'fa-sort-amount-desc',
-      context: 'Reduce length of selected text to make it succinct and clear'
-
-    },
-    ]
+  // action_items = [
+  //   {
+  //     id: 1,
+  //     name: 'Rephrase',
+  //     icon: 'fa-compress',
+  //     context:'Rephrase selected text to make it sound different'
+  //
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Paragraph',
+  //     icon: 'fa-paragraph',
+  //     context: 'Write a Paragraph on Selected text'
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Improve',
+  //     icon: 'fa-thumbs-o-up',
+  //     context: 'Correct grammar and improve the readability of text'
+  //
+  //   },{
+  //     id: 4,
+  //     name: 'AI image',
+  //     icon: 'fa-picture-o',
+  //     context: 'Auto Create Image'
+  //
+  //   }, {
+  //     id: 5,
+  //     name: 'Continue Writing',
+  //     icon: 'fa-pencil',
+  //     context: 'Auto Write the next sentence'
+  //
+  //   },
+  //   {
+  //     id: 6,
+  //     name: 'Shorten',
+  //     icon: 'fa-sort-amount-desc',
+  //     context: 'Reduce length of selected text to make it succinct and clear'
+  //
+  //   },
+  //   ]
+  useCases: any;
 
 
   constructor(  private http : HttpClient , private fb:FormBuilder , private aiService : OpenaiService) {
@@ -84,7 +89,8 @@ export class RytrComponent implements OnInit , OnDestroy{
    public selectedText :any;
 
   ngOnInit(): void {
-
+      this.getUsecases();
+      this.getActionlist();
     let pageX:any, pageY :any;
     this.dropdownList = [
       { item_id: 1, item_text: 'Blog Idea and Outline' },
@@ -99,16 +105,14 @@ export class RytrComponent implements OnInit , OnDestroy{
     this.dropdownSettings = {
       singleSelection: true,
       closeDropDownOnSelection: true,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'name',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
-    this.selectedItems = [
-      { item_id: 8, item_text: 'Chat' }
-    ];
+
     this.editor = new Editor();
 
 
@@ -149,6 +153,32 @@ export class RytrComponent implements OnInit , OnDestroy{
     });
 
   }
+
+
+  getUsecases(){
+
+    this.aiService.getUsecases().subscribe(
+      (res:any)=>{
+
+        this.useCases = res.data;
+        console.log(res.data);
+      }
+    )
+  }
+
+  getActionlist(){
+    this.aiService.getActionlist().subscribe(
+      (res:any)=>{
+
+        this.action_items = res.data;
+        console.log(res.data);
+      }
+    )
+  }
+
+
+
+
   getcontext() {
     this.rytrForm.patchValue({
       topic: "",
@@ -157,7 +187,7 @@ export class RytrComponent implements OnInit , OnDestroy{
 
     });
          // console.log(this.rytrForm.value.context[0]);
-    if(this.rytrForm.value.context[0].item_text== 'Business Idea'){
+    if(this.rytrForm.value.context[0].name== 'Business Idea'){
       this.label1 ='Interest';
       this.placeholder1 = 'Marketing Sass';
       this.label2= 'Skills';
@@ -166,12 +196,12 @@ export class RytrComponent implements OnInit , OnDestroy{
       this.Businessidea = true;
       this.hidetopic = false;
     }
-    if(this.rytrForm.value.context[0].item_text == 'Email'){
+    if(this.rytrForm.value.context[0].name == 'Email'){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Key Points';
       this.placeholder1 = 'Welcome to Rytr. Are you enjoying the experience?'
-    }if(this.rytrForm.value.context[0].item_text== 'Cover Letter'){
+    }if(this.rytrForm.value.context[0].name== 'Cover Letter'){
       this.label1 ='Job Role';
       this.placeholder1 = 'Digital Marketer ';
       this.label2= 'Job Skills';
@@ -180,13 +210,13 @@ export class RytrComponent implements OnInit , OnDestroy{
       this.Businessidea = true;
       this.hidetopic = false;
     }
-    if(this.rytrForm.value.context[0].item_text== 'Call To Action' || this.rytrForm.value.context[0].item_text== 'Chat' ){
+    if(this.rytrForm.value.context[0].name== 'Call To Action' || this.rytrForm.value.context[0].name== 'Chat' ){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Description';
       this.placeholder1 = 'An Ai writing assistant that help you automatically generate content for anything.'
     }
-    if(this.rytrForm.value.context[0].item_text == 'Job Description'){
+    if(this.rytrForm.value.context[0].name == 'Job Description'){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Job Role';
@@ -209,7 +239,7 @@ export class RytrComponent implements OnInit , OnDestroy{
     if(this.rytrForm.value.context[0].item_text == 'Business Idea' ) {
 
       this.data = {
-        "context": 'suggest' + ' ' + this.rytrForm.value.context[0].item_text + 's for'+rytrForm.value.interest + 'and'+ rytrForm.value.skill,
+        "context": 'suggest' + ' ' + this.rytrForm.value.context[0].item_text + '  for'+rytrForm.value.interest + 'and'+ rytrForm.value.skill,
 
       }
     }if(this.rytrForm.value.context[0].item_text == 'Email' || this.rytrForm.value.context[0].item_text == 'Chat') {
@@ -246,6 +276,8 @@ export class RytrComponent implements OnInit , OnDestroy{
     this.editor.destroy();
   }
   triggerAction(item: any) {
+
+    console.log(item.name);
     let post_data = {
       "context": item.context,
       "topic": this.selectedText
@@ -254,19 +286,37 @@ export class RytrComponent implements OnInit , OnDestroy{
    // console.log("post data obj", post_data);
     if (this.selectedText.length > 0) {
 
-      this.aiService.generateText(post_data).subscribe(
-        (res: any) => {
-          if(res.data !==''){
-            this.output = this.output +  name   + res.data;
-          }else{
-          // todo show toaster
-          }
 
+      if(item.id == 4){
+        this.aiService.generateImg(post_data).subscribe(
+          (res: any) => {
+            if(res.data !==''){
+              let url = res.data[0].url;
+              // this.output = this.output +  name   + res.data;
+              let image =`<img src="${url}"/>`
 
-        });
-    } else {
+              this.output+= image ;
 
+              console.log('img',res.data);
+            }else{
+              // todo show toaster
+            }
+          });
+      }else {
+        this.aiService.generateText(post_data).subscribe(
+          (res: any) => {
+            if(res.data !==''){
+              this.output = this.output +  name   + res.data;
+            }else{
+              // todo show toaster
+            }
+
+          });
+      }
     }
+
+
+
 
 
   }
