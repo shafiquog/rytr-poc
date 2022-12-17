@@ -103,8 +103,7 @@ export class RytrComponent implements OnInit , OnDestroy{
       { item_id: 5, item_text: 'Call To Action' },
       { item_id: 6, item_text: 'Email' },
       { item_id: 7, item_text: 'Job Description'},
-      { item_id: 8, item_text: 'Call To Action' },
-      { item_id: 9, item_text: 'Chat' }
+      { item_id: 8, item_text: 'Chat' }
     ];
     this.dropdownSettings = {
       singleSelection: true,
@@ -117,7 +116,7 @@ export class RytrComponent implements OnInit , OnDestroy{
       allowSearchFilter: true
     };
     this.selectedItems = [
-      { item_id: 1, item_text: 'Chat' }
+      { item_id: 8, item_text: 'Chat' }
     ];
     this.editor = new Editor();
 
@@ -175,7 +174,8 @@ export class RytrComponent implements OnInit , OnDestroy{
 
       this.Businessidea = true;
       this.hidetopic = false;
-    }if(this.rytrForm.value.context[0].item_text == 'Email'){
+    }
+    if(this.rytrForm.value.context[0].item_text == 'Email'){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Key Points';
@@ -189,7 +189,7 @@ export class RytrComponent implements OnInit , OnDestroy{
       this.Businessidea = true;
       this.hidetopic = false;
     }
-    if(this.rytrForm.value.context[0].item_text== 'Call To Action'){
+    if(this.rytrForm.value.context[0].item_text== 'Call To Action' || this.rytrForm.value.context[0].item_text== 'Chat' ){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Description';
@@ -204,9 +204,6 @@ export class RytrComponent implements OnInit , OnDestroy{
   }
 
 
-  openmodel(item:any){
-  //  console.log(item);
-  }
   onCloseHandled(){
     this.display = 'none';
   }
@@ -217,7 +214,7 @@ export class RytrComponent implements OnInit , OnDestroy{
       "context": 'summarize this topic:'  +this.html,
     }
 
-    this.http.post("https://technoversesms.com/openai-api/api/ai",this.data).subscribe(
+    this.http.post("https://technoversesms.com/openai-api/api/ai", data).subscribe(
       (res:any) =>{
 
        this.html =   this.html+'<b>Summary:</b>'+ res.data;
@@ -273,12 +270,19 @@ export class RytrComponent implements OnInit , OnDestroy{
       "context": item.context,
       "topic": this.selectedText
     }
+    let name = '<b> :' +item.name+'</b>' ;
    // console.log("post data obj", post_data);
     if (this.selectedText.length > 0) {
       this.http.post("https://technoversesms.com/openai-api/api/ai", post_data).subscribe(
         (res: any) => {
 
-          this.html = this.html + res.data;
+          if(res.data !==''){
+            this.html = this.html +  name   + res.data;
+          }else{
+          // todo show toaster
+          }
+
+
         });
     } else {
       console.log("no selection");
