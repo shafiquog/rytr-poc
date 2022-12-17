@@ -4,6 +4,7 @@ import { Editor } from 'ngx-editor';
 import { HttpClient } from '@angular/common/http';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import {OpenaiService} from "../../Services/openai.service";
 @Component({
   selector: 'app-rytr',
   templateUrl: './rytr.component.html',
@@ -13,7 +14,7 @@ export class RytrComponent implements OnInit , OnDestroy{
 
 
   editor!: Editor;
-  html= "";
+  output= "";
 
   data:any
   label1= 'Key Points' ;
@@ -24,12 +25,10 @@ export class RytrComponent implements OnInit , OnDestroy{
   display = "none";
   Businessidea = false;
   hidetopic = true;
-
-
   dropdownSettings!: IDropdownSettings ;
   dropdownList :any= [];
- rytrForm : FormGroup;
- selectedItems:any;
+  rytrForm : FormGroup;
+  selectedItems:any;
 
 
   action_items = [
@@ -45,7 +44,6 @@ export class RytrComponent implements OnInit , OnDestroy{
       name: 'Paragraph',
       icon: 'fa-paragraph',
       context: 'Write a Paragraph on Selected text'
-
     },
     {
       id: 3,
@@ -54,13 +52,7 @@ export class RytrComponent implements OnInit , OnDestroy{
       context: 'Correct grammar and improve the readability of text'
 
     },
- /*   {
-      id: 4,
-      name: 'AI image',
-      icon: 'fa-picture-o',
-      context: 'Auto Create Image with text'
 
-    },*/
     {
       id: 5,
       name: 'Continue Writing',
@@ -78,22 +70,21 @@ export class RytrComponent implements OnInit , OnDestroy{
     ]
 
 
-  constructor(private http : HttpClient , private fb:FormBuilder) {
+  constructor(  private http : HttpClient , private fb:FormBuilder , private aiService : OpenaiService) {
 
     this.rytrForm = this.fb.group({
       context : ['', Validators.required],
-      topic : ['' ,Validators.required],
-      skill : ['',Validators.required],
-      interest : ['',Validators.required]
+      topic : ['' ,],
+      skill : ['',],
+      interest : ['',]
 
 
-    })
+    });
   }
    public selectedText :any;
-  myData  = "Pakistan\nindia";
+
   ngOnInit(): void {
-    this.myData = this.myData.replace('\n', '<br/>');
-   // this.myData = JSON.stringify(this.myData);
+
     let pageX:any, pageY :any;
     this.dropdownList = [
       { item_id: 1, item_text: 'Blog Idea and Outline' },
@@ -119,6 +110,7 @@ export class RytrComponent implements OnInit , OnDestroy{
       { item_id: 8, item_text: 'Chat' }
     ];
     this.editor = new Editor();
+
 
     document.addEventListener("mouseup", () => {
       //console.log("mouse up called");
@@ -153,8 +145,7 @@ export class RytrComponent implements OnInit , OnDestroy{
     document.addEventListener("mousedown", (e) => {
       pageX = e.pageX;
       pageY = e.pageY;
-     // console.log("pageX-",pageX);
-     // console.log("pageY-",pageY);
+
     });
 
   }
@@ -208,19 +199,7 @@ export class RytrComponent implements OnInit , OnDestroy{
     this.display = 'none';
   }
 
-  summarizeText(){
 
-    let data = {
-      "context": 'summarize this topic:'  +this.html,
-    }
-
-    this.http.post("https://technoversesms.com/openai-api/api/ai", data).subscribe(
-      (res:any) =>{
-
-       this.html =   this.html+'<b>Summary:</b>'+ res.data;
-      });
-    this.display = 'none';
-  }
 
   getValue(rytrForm : FormGroup) {
 
@@ -253,14 +232,15 @@ export class RytrComponent implements OnInit , OnDestroy{
       }
     }
 
-       //  console.log('prompt' , this.data);
-    this.http.post("https://technoversesms.com/openai-api/api/ai",this.data).subscribe(
+     this.aiService.generateText(this.data).subscribe(
       (res:any) =>{
         this.isData = false;
-        this.html = res.data;
-        //this.html = this.html.replace("\n","**");
+        this.output = res.data;
+
       });
     }
+
+
 
   ngOnDestroy(): void {
     this.editor.destroy();
@@ -270,14 +250,14 @@ export class RytrComponent implements OnInit , OnDestroy{
       "context": item.context,
       "topic": this.selectedText
     }
-    let name = '<b> :' +item.name+'</b>' ;
+    let name = '<b>' +item.name+'</b>' + ':' ;
    // console.log("post data obj", post_data);
     if (this.selectedText.length > 0) {
-      this.http.post("https://technoversesms.com/openai-api/api/ai", post_data).subscribe(
-        (res: any) => {
 
+      this.aiService.generateText(post_data).subscribe(
+        (res: any) => {
           if(res.data !==''){
-            this.html = this.html +  name   + res.data;
+            this.output = this.output +  name   + res.data;
           }else{
           // todo show toaster
           }
@@ -285,7 +265,7 @@ export class RytrComponent implements OnInit , OnDestroy{
 
         });
     } else {
-      console.log("no selection");
+
     }
 
 

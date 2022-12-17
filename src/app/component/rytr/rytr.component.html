@@ -41,7 +41,7 @@
 
   <div class="row mt-2">
     <div class="col-md-12">
-      <button   type="submit" [disabled]=" isData" class="rytBtn"  >Ryte for me<i class="fa fa-long-arrow-right mx-3" aria-hidden="true"></i> </button>
+      <button   type="submit" [disabled]=" isData|| !rytrForm.valid" class="rytBtn"  >Ryte for me<i class="fa fa-long-arrow-right mx-3" aria-hidden="true"></i> </button>
     </div>
   </div>
 </form>
@@ -51,15 +51,16 @@
         <ngx-editor-menu [editor]="editor" > </ngx-editor-menu>
         <ngx-editor
           [editor]="editor"
-          [(ngModel)]="html"
+          [(ngModel)]="output"
 
-          [placeholder]="'Type here...'">
+        >
         </ngx-editor>
 
 
       </div>
 
     </div>
+
   </div>
 
 </div>

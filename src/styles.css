@@ -27,3 +27,7 @@
   padding-right: 65px !important;
 }
 li{list-style: none;}
+
+.ProseMirror{
+  white-space: pre-line!important;
+}

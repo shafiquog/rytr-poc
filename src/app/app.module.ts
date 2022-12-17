@@ -14,6 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {OpenaiService} from "./Services/openai.service";
 
 @NgModule({
   declarations: [
@@ -34,11 +35,13 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     FormsModule ,
     ReactiveFormsModule,
     HttpClientModule,
+
     NgMultiSelectDropDownModule.forRoot()
 
 
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
+    OpenaiService
   ],
   bootstrap: [AppComponent]
 })
