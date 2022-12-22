@@ -52,28 +52,16 @@
         <ngx-editor
           [editor]="editor"
           [(ngModel)]="html"
+
           [placeholder]="'Type here...'">
         </ngx-editor>
+
+
       </div>
 
     </div>
   </div>
-  <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Summarize</h4>
-          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure , you want to summarize this test</p>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"  (click)="summarizeText()">summarize</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>
 
 
@@ -82,11 +70,4 @@
   <ul class="actions-li" >
     <li *ngFor="let item of action_items" (click)="triggerAction(item)"><i class="fa {{item.icon}}" aria-hidden="true"></i> {{item.name}}</li>
   </ul>
-
-<!--  <a class="mx-2"> <i class="fa fa-compress" aria-hidden="true"></i> Rephrase</a>
-  <a class="mx-2"> <i class="fa fa-paragraph" aria-hidden="true"></i> Paragraph</a>
-  <a class="mx-2"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Improve</a>
-  <a class="mx-2"> <i class="fa fa-picture-o" aria-hidden="true"></i> All Image</a>
-  <a class="mx-2"> <i class="fa fa-pencil" aria-hidden="true"></i> Continue Writing</a>
-  <a class="mx-2"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Shorten</a>-->
 </div>
