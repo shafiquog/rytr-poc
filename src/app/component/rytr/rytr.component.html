@@ -41,20 +41,21 @@
 
   <div class="row mt-2">
     <div class="col-md-12">
-      <button   type="submit" [disabled]=" isData" class="rytBtn"  >Ryte for me<i class="fa fa-long-arrow-right mx-3" aria-hidden="true"></i> </button>
+      <button   type="submit" [disabled]="!rytrForm.valid" class="rytBtn"  >Write for me<i class="fa fa-long-arrow-right mx-3" aria-hidden="true"></i> </button>
     </div>
   </div>
 </form>
     </div>
     <div class="col-lg-9 col-md-7 col-sm-12">
-      <div class="NgxEditor__Wrapper">
-        <ngx-editor-menu [editor]="editor" > </ngx-editor-menu>
+      <div class="NgxEditor__Wrapper" style="padding: 30px;">
+        <ngx-editor-menu [editor]="editor"  > </ngx-editor-menu>
         <ngx-editor
           [editor]="editor"
-          [(ngModel)]="html"
-
+          
+          [innerText]="html"
           [placeholder]="'Type here...'">
         </ngx-editor>
+         
 
 
       </div>

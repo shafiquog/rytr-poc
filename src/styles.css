@@ -11,16 +11,16 @@
   background-color: #fff!important;
 }
 .multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
-  background: #ff8f00!important;
-  border:2px solid #ff8f00!important;
+  background: #339740!important;
+  border:2px solid #339740!important;
   border-radius: 20px!important;
 }
 
 .multiselect-item-checkbox input + div:before {
-  border: 2px solid #ff8f00 !important;
+  border: 2px solid #339740 !important;
 }
 .multiselect-item-checkbox input:checked + div:before {
-  background: #ff8f00!important;
+  background: #339740!important;
 }
 .NgxEditor {
   padding-left: 65px !important;

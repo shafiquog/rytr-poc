@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Editor } from 'ngx-editor';
-
+import { NgxSpinnerService } from "ngx-spinner";
 import { HttpClient } from '@angular/common/http';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { toHTML } from 'ngx-editor';
 @Component({
   selector: 'app-rytr',
   templateUrl: './rytr.component.html',
@@ -16,8 +17,8 @@ export class RytrComponent implements OnInit , OnDestroy{
   html= "";
 
   data:any
-  label1= 'Key Points' ;
-  placeholder1 =  'Welcome to Rytr. Are you enjoying the experience?';
+  label1= 'Description' ;
+  placeholder1 =  'Hello ,How are you?';
   label2= '' ;
   placeholder2 = '';
   public isData = false;
@@ -78,13 +79,13 @@ export class RytrComponent implements OnInit , OnDestroy{
     ]
 
 
-  constructor(private http : HttpClient , private fb:FormBuilder) {
+  constructor(private http : HttpClient , private fb:FormBuilder ,private spinner: NgxSpinnerService) {
 
     this.rytrForm = this.fb.group({
       context : ['', Validators.required],
-      topic : ['' ,Validators.required],
-      skill : ['',Validators.required],
-      interest : ['',Validators.required]
+      topic : ['' ],
+      skill : [''],
+      interest : ['']
 
 
     })
@@ -179,7 +180,7 @@ export class RytrComponent implements OnInit , OnDestroy{
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Key Points';
-      this.placeholder1 = 'Welcome to Rytr. Are you enjoying the experience?'
+      this.placeholder1 = 'write an email for salary increment'
     }if(this.rytrForm.value.context[0].item_text== 'Cover Letter'){
       this.label1 ='Job Role';
       this.placeholder1 = 'Digital Marketer ';
@@ -189,11 +190,39 @@ export class RytrComponent implements OnInit , OnDestroy{
       this.Businessidea = true;
       this.hidetopic = false;
     }
-    if(this.rytrForm.value.context[0].item_text== 'Call To Action' || this.rytrForm.value.context[0].item_text== 'Chat' ){
+    if(this.rytrForm.value.context[0].item_text== 'Call To Action' || this.rytrForm.value.context[0].item_text== 'Brand Name'  ){
       this.Businessidea = false;
       this.hidetopic = true;
       this.label1= 'Description';
       this.placeholder1 = 'An Ai writing assistant that help you automatically generate content for anything.'
+    }
+    if(this.rytrForm.value.context[0].item_text== 'Brand Name'  ){
+      this.Businessidea = false;
+      this.hidetopic = true;
+      this.label1= 'Description';
+      this.placeholder1 = 'Suggest me five brand names of clothes.'
+    }
+
+
+    if(this.rytrForm.value.context[0].item_text== 'Blog Idea and Outline'){
+      this.Businessidea = false;
+      this.hidetopic = true;
+      this.label1= 'Description';
+      this.placeholder1 = 'Suggest me blog idea on fast-food.'
+    }
+    if(this.rytrForm.value.context[0].item_text== 'Blog Section Writing'){
+      this.Businessidea = false;
+      this.hidetopic = true;
+      this.label1= 'Description';
+      this.placeholder1 = 'write a blog on pakistan.'
+    }
+
+     
+    if(this.rytrForm.value.context[0].item_text== 'Chat'){
+      this.Businessidea = false;
+      this.hidetopic = true;
+      this.label1= 'Description';
+      this.placeholder1 = 'Welcome to writing-tool. Are you enjoying the experience?'
     }
     if(this.rytrForm.value.context[0].item_text == 'Job Description'){
       this.Businessidea = false;
@@ -224,7 +253,7 @@ export class RytrComponent implements OnInit , OnDestroy{
 
   getValue(rytrForm : FormGroup) {
 
-
+    this.spinner.show();
     this.isData = true;
 
     if(this.rytrForm.value.context[0].item_text == 'Business Idea' ) {
@@ -233,10 +262,18 @@ export class RytrComponent implements OnInit , OnDestroy{
         "context": 'suggest' + ' ' + this.rytrForm.value.context[0].item_text + 's for'+rytrForm.value.interest + 'and'+ rytrForm.value.skill,
 
       }
-    }if(this.rytrForm.value.context[0].item_text == 'Email' || this.rytrForm.value.context[0].item_text == 'Chat') {
+    }if(this.rytrForm.value.context[0].item_text == 'Email' ) {
         this.Businessidea = false;
         this.data = {
           "context": 'write an' + ' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
+          "topic": rytrForm.value.topic
+        }
+      }
+
+      if(this.rytrForm.value.context[0].item_text == 'Chat'){
+        this.Businessidea = false;
+        this.data = {
+          "context": '',
           "topic": rytrForm.value.topic
         }
       }
@@ -258,6 +295,8 @@ export class RytrComponent implements OnInit , OnDestroy{
       (res:any) =>{
         this.isData = false;
         this.html = res.data;
+
+        this.spinner.hide();
         //this.html = this.html.replace("\n","**");
       });
     }
@@ -266,18 +305,21 @@ export class RytrComponent implements OnInit , OnDestroy{
     this.editor.destroy();
   }
   triggerAction(item: any) {
+    this.spinner.show();
     let post_data = {
       "context": item.context,
       "topic": this.selectedText
     }
-    let name = '<b> :' +item.name+'</b>' ;
+    let name = '<b>' +item.name+'</b>' + ':' ;
    // console.log("post data obj", post_data);
     if (this.selectedText.length > 0) {
       this.http.post("https://technoversesms.com/openai-api/api/ai", post_data).subscribe(
         (res: any) => {
 
           if(res.data !==''){
+                   
             this.html = this.html +  name   + res.data;
+            this.spinner.hide();
           }else{
           // todo show toaster
           }

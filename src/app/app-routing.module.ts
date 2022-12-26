@@ -4,9 +4,9 @@ import { LoginComponent } from './component/login/login.component';
 import { RytrComponent } from './component/rytr/rytr.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login-form', pathMatch: 'full' },
-  { path: 'login-form', component: LoginComponent },
-  { path: 'ryter', component: RytrComponent },
+  { path: '', redirectTo: '/writing-tool', pathMatch: 'full' },
+  // { path: 'login-form', component: LoginComponent },
+  { path: 'writing-tool', component: RytrComponent },
 ];
 
 @NgModule({
