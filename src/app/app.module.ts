@@ -14,7 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,9 +34,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     FormsModule ,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxSpinnerModule,
     NgMultiSelectDropDownModule.forRoot()
-
-
+    
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }
   ],

@@ -27,7 +27,7 @@
 
 }
   .select-styl:hover {
-    border: 1px solid #ff8f00;
+    border: 1px solid #339740;
   }
 
 
@@ -121,12 +121,12 @@ select {
 }
 
 .textarea:hover{
-  border: 1px solid #ff8f00;
+  border: 1px solid #339740;
 }
 
 .rytBtn{
-  background-color: #ff8f00;
-  border: 1px solid #ff8f00;
+  background-color: #339740;
+  border: 1px solid #339740;
   box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
   color: white;
   width: 100%;
@@ -148,7 +148,7 @@ select {
 
 
 textarea:focus-visible {
-  outline: 1px solid #ff8f00!important;
+  outline: 1px solid #339740!important;
   border-radius: 12px;
 }
 
@@ -177,7 +177,7 @@ ngx-editor {
 
 }
 .input-styl input:hover{
-  border: 1px solid #ff8f00;
+  border: 1px solid #339740;
 }
 button:disabled,
 button[disabled]{

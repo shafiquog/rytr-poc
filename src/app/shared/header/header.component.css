@@ -1,5 +1,5 @@
 .nav-color {
-  background-color: #301400;
+  background-color: #5fab5f;
 }
   .nav-color a{
       color:#ffffff;
@@ -12,13 +12,13 @@
  right:12px
   }
 .account-styl {
-  border-bottom: 3px solid #ffb300;
-  color: #ffb300;
+  border-bottom: 3px solid #5fab5f;
+  color: #5fab5f;
   opacity: 1;
   position:relative;
   top:8px;
 }
   .account-styl a {
-    color: #ffb300;
+    color: white;
   }
  
