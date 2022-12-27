@@ -1,0 +1,106 @@
+<section class="vh-100 gradient-custom  bc-color">
+     <div class="container form-styl    h-100 " >
+       <div class="row justify-content-right align-items-center set-bc h-100 regimg-styl  ">
+         <div class="col-md-3    ">
+           <!-- <div>
+             <img style="border-radius: 10px;" class="freelance-img"  src="assets/images/company_register.png">
+           </div> -->
+   
+         </div>
+         <div class="col-6 col-lg-9 col-xl-6  ">
+           <div class="card shadow-2-strong card-registration registration-form">
+             <div class="card-body p-4 p-md-5">
+               <div>
+                 <div class="content3 pl-3">
+                 <h3  style="font-family: cursive;" class="mb-4 pb-2 pb-md-0 mb-md-5 head-styl reg-txt">Register Now</h3>
+   
+   
+                 </div>
+               </div>
+   
+               <form   [formGroup]="Registraionform"  (ngSubmit)="submit(Registraionform)">
+   
+                 <div class="row">
+                   <div class="col-md-12 mb-4">
+   
+                     <div class="form-outline">
+                       <label class="form-label" for="firstName" >First Name</label>
+                       <input type="text" id="firstName" class="form-control form-control-lg" formControlName="name" />
+   <!--                    <div *ngIf="m.Fname.touched && m.Fname.invalid" class="alert alert-danger">-->
+   <!--                      <div *ngIf="m.Fname.errors?.required">Please enter First Name</div>-->
+   <!--                    </div>-->
+                     </div>
+   
+                   </div>
+                  
+                 </div>
+   
+   
+   
+                 <div class="row">
+                   <div class="col-md-12 mb-4 pb-2">
+   
+                     <div class="form-outline">
+                       <label class="form-label" for="emailAddress" >Email</label>
+                       <input type="email" id="emailAddress" class="form-control form-control-lg" formControlName="email" />
+   <!--                    <div *ngIf="m.email.touched && m.email.invalid" class="alert alert-danger">-->
+   <!--                      <div *ngIf="m.email.errors?.required">Please enter  Email</div>-->
+   <!--                    </div>-->
+   
+                     </div>
+   
+                   </div>
+                   <div class="col-md-12 mb-4 pb-2">
+   
+                     <div class="form-outline">
+                       <label class="form-label" for="phoneNumber" >Phone Number</label>
+   
+                       <input type="tel" id="phoneNumber" class="form-control form-control-lg" formControlName="Phone" />
+   <!--                    <div *ngIf="m.phone.touched && m.phone.invalid" class="alert alert-danger">-->
+   <!--                      <div *ngIf="m.phone.errors?.required">Please enter Mob no</div>-->
+   <!--                      <div *ngIf="m.phone.errors?.pattern"> Mob number is not 10 digit</div>-->
+   <!--                    </div>-->
+                     </div>
+   
+                   </div>
+                 </div>
+   
+   
+                 <div class="row">
+                   <div class="col-md-12 mb-4 pb-2">
+   
+                     <div class="form-outline">
+                       <label class="form-label" for="emailAddress">Password</label>
+                       <input type="password" id="password" class="form-control form-control-lg" formControlName="password" />
+   <!--                    <div *ngIf="m.password.touched && m.password.invalid" class="alert alert-danger">-->
+   <!--                      <div *ngIf="m.password.errors?.required">Please enter Password</div>-->
+   <!--                    </div>-->
+                     </div>
+   
+                   </div>
+                  
+                 </div>
+   
+   
+   
+   <!--              <div class="mt-4 pt-2">-->
+   <!--                <input class="btn btn-primary btn btn-white btn-animate btn-lg submit-btn" type="submit" value="Submit" />-->
+   <!--              </div>-->
+   
+                 <div class="center">
+                 <button class="btn" type="submit">
+                  
+                   <span>Submit</span>
+                 </button></div>
+   
+               </form>
+   
+             </div>
+           </div>
+         </div>
+   
+   
+       </div>
+     </div>
+   </section>
+   

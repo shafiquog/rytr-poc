@@ -15,6 +15,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { RegistrationComponent } from './component/registration/registration.component';
+import { DefaultLayoutComponent } from './layout/default-layout/default-layout.component';
+import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
+import { AuthService } from './shared/Services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +27,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     FooterComponent,
     SidebarComponent,
     RytrComponent,
+    RegistrationComponent,
+    DefaultLayoutComponent,
+    LoginLayoutComponent,
 
   ],
   imports: [
@@ -38,7 +45,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     NgMultiSelectDropDownModule.forRoot()
     
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy } ,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
