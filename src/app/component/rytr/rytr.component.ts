@@ -29,10 +29,24 @@ export class RytrComponent implements OnInit , OnDestroy{
 
 
   dropdownSettings!: IDropdownSettings ;
+  dropdownSettings1!: IDropdownSettings ;
   dropdownList :any= [];
  rytrForm : FormGroup;
  selectedItems:any;
 
+
+ tone = [
+  {   id: 1,  name: 'Convincing'},
+  { id:2 , name : 'Casual'},
+  { id:3 , name : 'Critical'},
+  { id:4 , name : 'Cautionary'},
+  { id:5 , name : 'Candid'},
+  { id:6 , name : 'Formal'},
+  { id:7 , name : 'Funny'},
+  { id:8 , name : 'Humble'},
+  { id:9 , name : 'Informative'},
+  { id:10 , name : 'Inspirational'}
+ ];
 
   action_items = [
     {
@@ -85,6 +99,7 @@ export class RytrComponent implements OnInit , OnDestroy{
     this.rytrForm = this.fb.group({
       context : ['', Validators.required],
       topic : ['' ],
+      tone:['' ,Validators.required],
       skill : [''],
       interest : ['']
 
@@ -117,6 +132,19 @@ export class RytrComponent implements OnInit , OnDestroy{
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+
+    this.dropdownSettings1 = {
+      singleSelection: true,
+      closeDropDownOnSelection: true,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
+
     this.selectedItems = [
       { item_id: 8, item_text: 'Chat' }
     ];
@@ -266,28 +294,28 @@ export class RytrComponent implements OnInit , OnDestroy{
 
       this.data = {
         "context": 'suggest' + ' ' + this.rytrForm.value.context[0].item_text + 's for' ,
-        "topic" : topicData
+        "topic" : topicData + ''+this.rytrForm.value.tone[0].name
       }
-    }if(this.rytrForm.value.context[0].item_text == 'Email' ) {
+    }if(this.rytrForm.value.context[0].item_text == 'Email' ||this.rytrForm.value.context[0].item_text == 'Blog Section Writing'  ) {
         this.Businessidea = false;
         this.data = {
           "context": 'write an' + ' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
-          "topic": rytrForm.value.topic
+          "topic": rytrForm.value.topic+ ''+this.rytrForm.value.tone[0].name
         }
       }
 
-      if(this.rytrForm.value.context[0].item_text == 'Chat'){
+      if(this.rytrForm.value.context[0].item_text == 'Chat' ||this.rytrForm.value.context[0].item_text == 'Call To Action' ){
         this.Businessidea = false;
         this.data = {
           "context": '',
-          "topic": rytrForm.value.topic
+          "topic": rytrForm.value.topic +''+ 'in'+this.rytrForm.value.tone[0].name
         }
       }
     if(this.rytrForm.value.context[0].item_text == 'Job Description' ||this.rytrForm.value.context[0].item_text == 'Cover Letter'){
       this.Businessidea = false;
       this.data = {
-        "context": 'write' + ' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
-        "topic": rytrForm.value.topic
+        "context": 'write' +' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
+        "topic": rytrForm.value.topic +''+this.rytrForm.value.tone[0].name
       }
     }  
 
