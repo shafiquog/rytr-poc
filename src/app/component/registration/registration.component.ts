@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/shared/Services/auth.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   Registraionform: any;
 
 
-  constructor(private fb: FormBuilder  ,private Auth :AuthService  , private route :Router) {
+  constructor(private fb: FormBuilder  ,private Auth :AuthService ,public spinner:NgxSpinnerService , private route :Router) {
     this.Registraionform = this.fb.group({
       name: ['', Validators.required],
     
@@ -35,10 +36,11 @@ export class RegistrationComponent implements OnInit {
 
   submit(Registraionform :FormGroup) {
 
-      
+    this.spinner.show(); 
 this.Auth.register(Registraionform.value).subscribe(
   (res:any) =>{
 
+    this.spinner.hide();
     this.route.navigate(['/login']);
   }
 )

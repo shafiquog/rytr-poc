@@ -9,7 +9,7 @@ input.ng-valid {
   top: 18px;
   padding: 62px 57px 44px 12px;
   border-radius: 0 99px 0 99px;
-  box-shadow: 1px 1px 1px darkcyan ;
+ 
 }
 .goole-icon{
   width: 35px;
@@ -27,10 +27,10 @@ label{
   background-color: white;
 border-radius: 20px;
   box-shadow: 0px 9px 30px #88B6D9;
-
+  min-height: 70vh;
 }
 .signin-bc{
-  background-color:darkcyan;
+  background-color:#339740;
 }
 .register-txt{
   color: grey;
@@ -38,14 +38,15 @@ border-bottom: 1px solid grey;
   animation: zoom-in-zoom-out 5s ease-in infinite;
 }
 .register-txt:hover{
-  color: blue;
-  border-bottom: 1px solid blue;
+  color: #339740;
+  border-bottom: 1px solid #339740;
 }
 
 .input-pos{
-  width: 98%;
-  margin-left: 2px;
+  width: 91%;
+  margin-left: 24px;
 }
+
 
 
 .signupBtn{

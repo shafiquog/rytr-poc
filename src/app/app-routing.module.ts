@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
 import { RytrComponent } from './component/rytr/rytr.component';
@@ -13,7 +14,7 @@ const routes: Routes = [
    
     children: [
       { path: '', redirectTo: '/writing-tool', pathMatch: 'full' },
-      { path: 'writing-tool', component: RytrComponent },
+      { path: 'writing-tool', component: RytrComponent  ,canActivate :[AuthGuard]},
     
     ]
   },

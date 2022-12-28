@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { toHTML } from 'ngx-editor';
+ 
 @Component({
   selector: 'app-rytr',
   templateUrl: './rytr.component.html',
@@ -167,6 +168,7 @@ export class RytrComponent implements OnInit , OnDestroy{
 
     });
          // console.log(this.rytrForm.value.context[0]);
+         debugger;
     if(this.rytrForm.value.context[0].item_text== 'Business Idea'){
       this.label1 ='Interest';
       this.placeholder1 = 'Marketing Sass';
@@ -253,14 +255,18 @@ export class RytrComponent implements OnInit , OnDestroy{
 
   getValue(rytrForm : FormGroup) {
 
+
+ 
+
     this.spinner.show();
     this.isData = true;
-
+ 
     if(this.rytrForm.value.context[0].item_text == 'Business Idea' ) {
+      let topicData = rytrForm.value.interest + 'and'+ rytrForm.value.skill;
 
       this.data = {
-        "context": 'suggest' + ' ' + this.rytrForm.value.context[0].item_text + 's for'+rytrForm.value.interest + 'and'+ rytrForm.value.skill,
-
+        "context": 'suggest' + ' ' + this.rytrForm.value.context[0].item_text + 's for' ,
+        "topic" : topicData
       }
     }if(this.rytrForm.value.context[0].item_text == 'Email' ) {
         this.Businessidea = false;
@@ -283,12 +289,7 @@ export class RytrComponent implements OnInit , OnDestroy{
         "context": 'write' + ' ' + this.rytrForm.value.context[0].item_text + ' ' + 'for',
         "topic": rytrForm.value.topic
       }
-    } else {
-      this.data = {
-        "context":  this.rytrForm.value.context[0].item_text  ,
-        "topic": rytrForm.value.topic
-      }
-    }
+    }  
 
        //  console.log('prompt' , this.data);
     this.http.post("https://technoversesms.com/openai-api/api/ai",this.data).subscribe(
@@ -304,7 +305,13 @@ export class RytrComponent implements OnInit , OnDestroy{
   ngOnDestroy(): void {
     this.editor.destroy();
   }
-  triggerAction(item: any) {
+
+
+  triggerAction(item: any ) {
+    
+ 
+        
+          
     this.spinner.show();
     let post_data = {
       "context": item.context,

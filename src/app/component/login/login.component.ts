@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/shared/Services/auth.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,8 +11,9 @@ import { AuthService } from 'src/app/shared/Services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginform: any;
+  loginError: any;
 
-  constructor(  private fb: FormBuilder , private router:Router, public spinner:NgxSpinnerService ,
+  constructor( private toastr: ToastrService, private fb: FormBuilder , private router:Router, public spinner:NgxSpinnerService ,
     private auth :AuthService)
   {
     this.loginform = this.fb.group({
@@ -31,18 +32,28 @@ export class LoginComponent implements OnInit {
 
   Login(loginform:FormGroup) {
 
-    console.log(loginform.value);
- 
- 
+    this.spinner.show();
 this.auth.login(loginform.value).subscribe(
 (res:any) =>{
 
+  this.toastr.success('You are successfully login!');
   if(res){
     this.router.navigate(['writing-tool']);
-  }
+  }  
   localStorage.setItem('token', res.data.token);
 
-})
+},
+(error) => {        
+  
+  this.toastr.error('Your credentials are not correct');
+  
+  
+  
+ 
+}) 
+
+this.spinner.hide();
+this.loginform.reset();
   
 
   }

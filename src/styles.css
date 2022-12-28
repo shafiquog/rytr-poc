@@ -27,3 +27,15 @@
   padding-right: 65px !important;
 }
 li{list-style: none;}
+
+
+.toast-top-right{
+ 
+ font-weight: bold;
+  border-radius: 16px;
+  bottom: 37rem;
+  margin: 0 auto;
+  right: 0;
+  left: 0;
+  width: 100%;
+}

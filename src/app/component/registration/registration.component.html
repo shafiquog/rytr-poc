@@ -12,7 +12,7 @@
              <div class="card-body p-4 p-md-5">
                <div>
                  <div class="content3 pl-3">
-                 <h3  style="font-family: cursive;" class="mb-4 pb-2 pb-md-0 mb-md-5 head-styl reg-txt">Register Now</h3>
+                 <h3   class="mb-4 pb-2 pb-md-0 mb-md-5 head-styl reg-txt" style="color: #339740;">Sign In</h3>
    
    
                  </div>
@@ -88,12 +88,17 @@
    <!--              </div>-->
    
                  <div class="center">
-                 <button class="btn" type="submit">
+                 <button class="btn" type="submit" style="background-color: #339740;color: white; border-radius: 1px solid #339740;" [disabled]="!Registraionform.valid">
                   
                    <span>Submit</span>
                  </button></div>
    
                </form>
+
+
+               <div>
+                <a  routerLink="/login" style="color: #339740;">Already have an account</a>
+               </div>
    
              </div>
            </div>

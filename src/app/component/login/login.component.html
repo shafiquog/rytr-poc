@@ -1,26 +1,30 @@
-<section class="vh-100 bc-color">
+<section class="vh-100  ">
   <div class="container py-5 h-100 ">
     <div class="row d-flex align-items-center justify-content-center login-styl  h-100">
       <!-- <div class="col-md-8 col-lg-7 col-xl-6">
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
              class="img-fluid" alt="Phone image">
       </div> -->
-      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+      <div class="col-6 col-lg-7 col-xl-5 offset-xl-1">
 
         <div class="login-form pr-4 pl-4 pb-4 pt-4">
-          <h2 class="login-txt" style="font-family: cursive;display: flex;justify-content: center;">Login</h2>
+          <h2 class="login-txt" style="display: flex;justify-content: center;color: #339740;">Login</h2>
 
         <form [formGroup]="loginform"  (ngSubmit)="Login(loginform)">
+
+          <div *ngIf="loginError">
+            <p style="color: red;">{{loginError}}</p>
+          </div>
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <label class="form-label" for="form1Example13">Email address</label>
+            <label class="form-label input-pos" for="form1Example13">Email address</label>
             <input type="email" id="form1Example13" class="form-control form-control-lg input-pos" formControlName="email" />
              
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-4">
-            <label class="form-label" for="form1Example23">Password</label>
+            <label class="form-label input-pos" for="form1Example23">Password</label>
             <input type="password" id="form1Example23" class="form-control form-control-lg input-pos" formControlName="password"/>
              
           </div>
@@ -36,7 +40,7 @@
           <!-- Submit button -->
           <div class=" signupBtn">
 
-          <button  type="submit" class="btn btn-primary btn-lg btn-block signin-bc" [disabled]="!loginform.valid">
+          <button  type="submit" style="background-color: #339740; color: white; border-radius: 1px solid #339740;" class=" btn btn-default btn-lg btn-block signin-bc" [disabled]="!loginform.valid">
             Sign in</button>
           </div>
 
@@ -44,7 +48,7 @@
             <!-- Checkbox -->
             <div class="form-check py-2">
 <!--              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />-->
-              <a class="register-txt" [routerLink]="['/registration']"> Register here </a>
+              <a class="register-txt" style="color:#339740" [routerLink]="['/registration']"> Register here </a>
             </div>
           
           </div>

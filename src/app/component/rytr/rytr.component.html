@@ -33,7 +33,7 @@
 
       <div>
         <label for="">{{this.label1}}</label>
-        <textarea name="" id="" cols="27" rows="10"  [placeholder]="this.placeholder1" class="textarea formcontrol"  formControlName="topic"></textarea>
+        <textarea name="" id="selector" cols="27" rows="10" [placeholder]="this.placeholder1" class="textarea formcontrol"  formControlName="topic"></textarea>
       </div>
 
     </div>
@@ -69,6 +69,6 @@
 <div class="menu-ui  hide-elemnt" id="tooltip_menu">
 
   <ul class="actions-li" >
-    <li *ngFor="let item of action_items" (click)="triggerAction(item)"><i class="fa {{item.icon}}" aria-hidden="true"></i> {{item.name}}</li>
+    <li *ngFor="let item of action_items" (click)="triggerAction(item )"><i class="fa {{item.icon}}" aria-hidden="true"></i> {{item.name}}</li>
   </ul>
 </div>

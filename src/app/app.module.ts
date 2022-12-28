@@ -19,6 +19,7 @@ import { RegistrationComponent } from './component/registration/registration.com
 import { DefaultLayoutComponent } from './layout/default-layout/default-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 import { AuthService } from './shared/Services/auth.service';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,11 @@ import { AuthService } from './shared/Services/auth.service';
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     NgMultiSelectDropDownModule.forRoot()
     
   ],
